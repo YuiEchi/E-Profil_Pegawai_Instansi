@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SatuanKerja extends Model
+class RiwayatSlks extends Model
 {
     use HasFactory;
-    protected $table = 'satuan_kerja';
+    protected $table = 'riwayat_slk';
     
-        public function unit_kerja()
+    public function pegawai()
     {
-        return $this->belongsTo(UnitKerja::class);
+        return $this->belongsTo(Pegawai::class);
     }
 }

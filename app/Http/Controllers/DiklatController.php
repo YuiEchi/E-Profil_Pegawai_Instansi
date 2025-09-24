@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pegawai;
+use App\Models\RiwayatDiklat;
 
-class PegawaiController extends Controller
+class DiklatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pegawai = Pegawai::with(['instansi', 'unit_kerja', 'satuan_kerja'])->get();
-        return view('pegawai', compact('pegawai'));
+        $riwayat_diklat = RiwayatDiklat::with('pegawai')->get();
+        return view('diklat', compact('riwayat_diklat'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pegawai extends Model
 {
+    use HasFactory;
     protected $table = 'pegawai';
 
     public function instansi()
@@ -14,12 +15,12 @@ class Pegawai extends Model
         return $this->belongsTo(Instansi::class);
     }
     
-    public function unitKerja()
+    public function unit_kerja()
     {
         return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
     }
 
-    public function satuanKerja()
+    public function satuan_kerja()
     {
         return $this->belongsTo(SatuanKerja::class, 'satuan_kerja_id');
     }

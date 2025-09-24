@@ -17,6 +17,20 @@ class DatabaseSeeder extends Seeder
         UnitKerjaSeeder::class,
         SatuanKerjaSeeder::class,
         PegawaiSeeder::class,
+        StrataSeeder::class,
+        RiwayatPendidikanSeeder::class,
+        EselonSeeder::class,
+        JenisJabatanSeeder::class,
+        RiwayatJabatanSeeder::class,
+        RiwayatDiklatSeeder::class,
+        GolonganSeeder::class, 
+        RiwayatGolonganSeeder::class,
+        RiwayatPlhPltSeeder::class,
+        RiwayatGajiSeeder::class,
+        RiwayatKgbSeeder::class,
+        RiwayatPenghargaanSeeder::class,
+        RiwayatSlksSeeder::class,
+        RiwayatOrganisasiSeeder::class,
         ]);
     }
 }

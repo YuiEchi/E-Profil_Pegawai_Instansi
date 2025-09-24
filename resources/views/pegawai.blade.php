@@ -123,7 +123,7 @@
                                 Unit Kerja
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->unitKerja->nm_unit_kerja ?? '-' }}
+                                {{ $p->unit_kerja->nm_unit_kerja ?? '-' }}
                             </td>
                         </tr>
                         <tr>

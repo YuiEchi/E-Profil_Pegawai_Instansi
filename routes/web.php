@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PendidikanController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\DiklatController;
+use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\PlhPltController;
+use App\Http\Controllers\GajiController;
+use App\Http\Controllers\KgbController;
+use App\Http\Controllers\PenghargaanController;
+use App\Http\Controllers\SlksController;
+use App\Http\Controllers\OrganisaasiController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,45 +28,25 @@ use App\Http\Controllers\PegawaiController;
 
 Route::get('/', [PegawaiController::class, 'index'])->name('pegawai');
 
-Route::get('/pendidikan', function () {
-    return view('pendidikan');
-})->name('pendidikan');
+Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan');
 
-Route::get('/jabatan', function () {
-    return view('jabatan');
-})->name('jabatan');
+Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
 
-Route::get('/plh_plt', function () {
-    return view('plh_plt');
-})->name('plh_plt');
+Route::get('/plh_plt', [PlhPltController::class, 'index'])->name('plh_plt');
 
-Route::get('/golongan', function () {
-    return view('golongan');
-})->name('golongan');
+Route::get('/golongan', [GolonganController::class, 'index'])->name('golongan');
 
-Route::get('/diklat', function () {
-    return view('diklat');
-})->name('diklat');
+Route::get('/diklat', [DiklatController::class, 'index'])->name('diklat');
 
-Route::get('/gaji', function () {
-    return view('gaji');
-})->name('gaji');
+Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
 
-Route::get('/kgb', function () {
-    return view('kgb');
-})->name('kgb');
+Route::get('/kgb', [KgbController::class, 'index'])->name('kgb');
 
-Route::get('/penghargaan', function () {
-    return view('penghargaan');
-})->name('penghargaan');
+Route::get('/penghargaan', [PenghargaanController::class, 'index'])->name('penghargaan');
 
-Route::get('/slks', function () {
-    return view('slks');
-})->name('slks');
+Route::get('/slks', [SlksController::class, 'index'])->name('slks');
 
-Route::get('/organisasi', function () {
-    return view('organisasi');
-})->name('organisasi');
+Route::get('/organisasi', [OrganisaasiController::class, 'index'])->name('organisasi');
 
 Route::get('/prestasi', function () {
     return view('prestasi');

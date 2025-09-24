@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnitKerja extends Model
 {
+    use HasFactory;
     protected $table = 'unit_kerja';
 
     public function instansi()
@@ -14,7 +15,7 @@ class UnitKerja extends Model
         return $this->belongsTo(Instansi::class);
     }
 
-    public function satuanKerja()
+    public function satuan_kerja()
     {
         return $this->hasMany(SatuanKerja::class);
     }
