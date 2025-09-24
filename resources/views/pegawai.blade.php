@@ -123,7 +123,7 @@
                                 Unit Kerja
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->unit_kerja->nm_unit_kerja ?? '-' }}
+                                 {{ optional($p->instansi->latestUnitKerja)->nm_unit_kerja ?? '-' }}
                             </td>
                         </tr>
                         <tr>
@@ -131,7 +131,7 @@
                                 Satuan Kerja
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->satuan_kerja->nm_satuan_kerja ?? '-' }}
+                                {{ optional(optional($p->instansi->latestUnitKerja)->latestSatuanKerja)->nm_satuan_kerja ?? '-' }}
                             </td>
                         </tr>
                     </tbody>
