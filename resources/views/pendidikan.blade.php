@@ -21,7 +21,7 @@
                         <tbody>
                             @foreach ($riwayat_pendidikan as $rp)
                                 <tr class="odd:bg-white">
-                                    <td class="border border-gray px-6 py-4 text-sm font-medium text-default-800">
+                                    <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->strata->strata ?? '-' }}
                                     </td>
                                     <td class="border border-gray px-6 py-4 text-sm text-default-800">
@@ -30,16 +30,16 @@
                                     <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->nm_sekolah_pt ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm font-medium text-default-800">
+                                    <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->no_ijazah ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm font-medium text-default-800">
+                                    <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->thn_lulus ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm font-medium text-default-800">
+                                    <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->pimpinan ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm font-medium text-default-800">
+                                    <td class="border border-gray px-6 py-4 text-sm text-default-800">
                                         {{ $rp->kode_pendidikan ?? '-' }}
                                     </td>
                                 </tr>

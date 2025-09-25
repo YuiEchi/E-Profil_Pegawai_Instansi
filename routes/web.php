@@ -12,6 +12,11 @@ use App\Http\Controllers\KgbController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\SlksController;
 use App\Http\Controllers\OrganisaasiController;
+use App\Http\Controllers\PrestasiKerjaController;
+use App\Http\Controllers\AsesmenController;
+use App\Http\Controllers\KesejahteraanController;
+use App\Http\Controllers\KeluargaController;
+
 
 
 
@@ -48,21 +53,16 @@ Route::get('/slks', [SlksController::class, 'index'])->name('slks');
 
 Route::get('/organisasi', [OrganisaasiController::class, 'index'])->name('organisasi');
 
-Route::get('/prestasi', function () {
-    return view('prestasi');
-})->name('prestasi');
+Route::get('/prestasi', [PrestasiKerjaController::class, 'index'])->name('prestasi');
 
-Route::get('/asesmen', function () {
-    return view('asesmen');
-})->name('asesmen');
+Route::get('/asesmen', [AsesmenController::class, 'index'])->name('asesmen');
 
-Route::get('/kesejahteraan', function () {
-    return view('kesejahteraan');
-})->name('kesejahteraan');
+Route::get('/kesejahteraan', [KesejahteraanController::class, 'index'])->name('kesejahteraan');
 
-Route::get('/keluarga', function () {
-    return view('keluarga');
-})->name('keluarga');
+Route::get('/keluarga', [KeluargaController::class, 'index'])->name('keluarga');
+
+
+
 
 Route::get('/dokumen', function () {
     return view('dokumen');

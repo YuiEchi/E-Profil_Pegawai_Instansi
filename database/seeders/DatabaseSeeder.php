@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
         RiwayatPenghargaanSeeder::class,
         RiwayatSlksSeeder::class,
         RiwayatOrganisasiSeeder::class,
+        NilaiPrestasiKerjaSeeder::class,
+        DataKeluargaSeeder::class,
         ]);
     }
 }
