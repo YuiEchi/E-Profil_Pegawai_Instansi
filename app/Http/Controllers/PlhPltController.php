@@ -13,7 +13,7 @@ class PlhPltController extends Controller
     public function index()
     {
         $riwayat_plh_plt = RiwayatPlhPlt::with('pegawai')->get();
-        return view('plh_plt', compact('riwayat_plh_plt'));
+        return view('frontend.plh_plt', compact('riwayat_plh_plt'));
     }
 
     /**

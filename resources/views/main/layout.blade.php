@@ -48,6 +48,14 @@
                 <ul class="admin-menu hs-accordion-group flex w-full flex-col gap-1.5">
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
+                            href="{{ route('beranda') }}">
+                            <i class="material-icons">dashboard</i>
+                            Beranda
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
                             href="{{ route('pegawai') }}">
                             <i class="material-icons">account_circle</i>
                             Profil Pegawai

@@ -13,7 +13,7 @@ class PenghargaanController extends Controller
     public function index()
     {
         $riwayat_penghargaan = RiwayatPenghargaan::with('pegawai')->get();
-        return view('penghargaan', compact('riwayat_penghargaan'));
+        return view('frontend.penghargaan', compact('riwayat_penghargaan'));
     }
 
     /**

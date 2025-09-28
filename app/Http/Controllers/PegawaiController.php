@@ -15,7 +15,7 @@ class PegawaiController extends Controller
         // $pegawai = Pegawai::with(['instansi', 'instansi.unit_kerja', 'satuan_kerja'])->get();
         $pegawai = Pegawai::with(['instansi.latestUnitKerja','instansi.latestUnitKerja.latestSatuanKerja'])->get();
 
-        return view('pegawai', compact('pegawai'));
+        return view('frontend.pegawai', compact('pegawai'));
     }
 
 

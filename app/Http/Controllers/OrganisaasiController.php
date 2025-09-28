@@ -13,7 +13,7 @@ class OrganisaasiController extends Controller
     public function index()
     {
         $riwayat_organisasi = RiwayatOrganisasi::with('pegawai')->get();
-        return view('organisasi', compact('riwayat_organisasi'));
+        return view('frontend.organisasi', compact('riwayat_organisasi'));
     }
 
     /**

@@ -14,7 +14,7 @@ class KeluargaController extends Controller
     {
         {
         $data_keluarga = DataKeluarga::with('pegawai')->get();
-        return view('keluarga', compact('data_keluarga'));
+        return view('frontend.keluarga', compact('data_keluarga'));
         }
     }
 

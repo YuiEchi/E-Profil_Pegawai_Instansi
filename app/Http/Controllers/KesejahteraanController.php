@@ -14,8 +14,8 @@ class KesejahteraanController extends Controller
     {
         {
         $kesejahteraan = Kesejahteraan::with('pegawai')->get();
-        return view('kesejahteraan', compact('kesejahteraan'));
-    }
+        return view('frontend.kesejahteraan', compact('kesejahteraan'));
+        }
     }
 
     /**

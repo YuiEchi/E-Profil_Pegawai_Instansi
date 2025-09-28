@@ -13,7 +13,7 @@ class GolonganController extends Controller
     public function index()
     {
         $riwayat_golongan = RiwayatGolongan::with('pegawai', 'golongan')->get();
-        return view('golongan', compact('riwayat_golongan'));
+        return view('frontend.golongan', compact('riwayat_golongan'));
     }
 
     /**

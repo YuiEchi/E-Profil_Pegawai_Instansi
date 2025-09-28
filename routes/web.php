@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\JabatanController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\PrestasiKerjaController;
 use App\Http\Controllers\AsesmenController;
 use App\Http\Controllers\KesejahteraanController;
 use App\Http\Controllers\KeluargaController;
+use App\Http\Controllers\DokumenController;
 
 
 
@@ -31,7 +33,10 @@ use App\Http\Controllers\KeluargaController;
 |
 */
 
-Route::get('/', [PegawaiController::class, 'index'])->name('pegawai');
+// TAMPILAN
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+
+Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
 
 Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan');
 
@@ -61,11 +66,7 @@ Route::get('/kesejahteraan', [KesejahteraanController::class, 'index'])->name('k
 
 Route::get('/keluarga', [KeluargaController::class, 'index'])->name('keluarga');
 
-
-
-
-Route::get('/dokumen', function () {
-    return view('dokumen');
-})->name('dokumen');
+Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+// AKHIR TAMPILAN
 
 

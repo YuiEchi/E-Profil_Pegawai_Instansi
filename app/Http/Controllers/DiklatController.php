@@ -13,7 +13,7 @@ class DiklatController extends Controller
     public function index()
     {
         $riwayat_diklat = RiwayatDiklat::with('pegawai')->get();
-        return view('diklat', compact('riwayat_diklat'));
+        return view('frontend.diklat', compact('riwayat_diklat'));
     }
 
     /**

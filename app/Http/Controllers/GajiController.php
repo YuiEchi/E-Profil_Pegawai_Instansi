@@ -13,7 +13,7 @@ class GajiController extends Controller
     public function index()
     {
         $riwayat_gaji = RiwayatGaji::with('pegawai')->get();
-        return view('gaji', compact('riwayat_gaji'));
+        return view('frontend.gaji', compact('riwayat_gaji'));
     }
 
     /**

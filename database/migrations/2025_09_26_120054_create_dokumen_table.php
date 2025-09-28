@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nilai_prestasi_kerja', function (Blueprint $table) {
+        Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
 
-            $table->string('tahun', 4); 
-            $table->decimal('skp');
-            $table->decimal('nilai_perilaku_kerja');
-            $table->decimal('nilai_prestasi_kerja');
-            $table->string('klasifikasi_nilai'); 
-            $table->string('pejabat_penilai');
-
+            $table->string('nm_dokumen');
+            $table->string('file_path');
             $table->unsignedBigInteger('pegawai_id');
             $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
+            $table->unsignedBigInteger('folder_id');
+            $table->foreign('folder_id')->references('id')->on('folder')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nilai_prestasi_kerja');
+        Schema::dropIfExists('dokumen');
     }
 };

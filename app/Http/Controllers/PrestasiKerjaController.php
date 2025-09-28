@@ -13,7 +13,7 @@ class PrestasiKerjaController extends Controller
     public function index()
     {
         $nilai_prestasi_kerja = NilaiPrestasiKerja::with('pegawai')->get();
-        return view('prestasi', compact('nilai_prestasi_kerja'));
+        return view('frontend.prestasi', compact('nilai_prestasi_kerja'));
     }
 
     /**

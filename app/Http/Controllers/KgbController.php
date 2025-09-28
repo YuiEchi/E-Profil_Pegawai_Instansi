@@ -13,7 +13,7 @@ class KgbController extends Controller
     public function index()
     {
         $riwayat_kgb = RiwayatKgb::with('pegawai')->get();
-        return view('kgb', compact('riwayat_kgb')); // ✅ ini benar
+        return view('frontend.kgb', compact('riwayat_kgb')); // ✅ ini benar
     }
 
     /**

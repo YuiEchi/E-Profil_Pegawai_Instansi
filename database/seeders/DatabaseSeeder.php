@@ -32,7 +32,11 @@ class DatabaseSeeder extends Seeder
         RiwayatSlksSeeder::class,
         RiwayatOrganisasiSeeder::class,
         NilaiPrestasiKerjaSeeder::class,
+        RiwayatAsesmenSeeder::class,
+        KesejahteraanSeeder::class,
         DataKeluargaSeeder::class,
+        FolderSeeder::class,
+        DokumenSeeder::class
         ]);
     }
 }

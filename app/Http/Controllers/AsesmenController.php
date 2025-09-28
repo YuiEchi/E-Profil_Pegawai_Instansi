@@ -13,7 +13,7 @@ class AsesmenController extends Controller
     public function index()
     {
         $riwayat_asesmen = RiwayatAsesmen::with('pegawai')->get();
-        return view('asesmen', compact('riwayat_asesmen'));
+        return view('frontend.asesmen', compact('riwayat_asesmen'));
     }
 
     /**

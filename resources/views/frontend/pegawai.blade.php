@@ -7,7 +7,7 @@
                 <table class="min-w-full divide-y divide-gray-200 border border-collapse">
                     <tbody class="divide-y divide-gray-200">
                         <tr>
-                            <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm font-medium text-default-800">
+                            <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm font-medium text-default-800" style="width: 300px;">
                                 Nama
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">

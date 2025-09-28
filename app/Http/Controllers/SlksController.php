@@ -13,7 +13,7 @@ class SlksController extends Controller
     public function index()
     {
         $riwayat_slks = RiwayatSlks::with('pegawai')->get();
-        return view('slks', compact('riwayat_slks'));
+        return view('frontend.slks', compact('riwayat_slks'));
     }
 
     /**

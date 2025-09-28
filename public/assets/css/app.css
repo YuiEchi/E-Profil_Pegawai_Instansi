@@ -4282,10 +4282,10 @@ main{
             margin-inline-start: 16px;
   }
 }
-.admin-menu a.active{
-  background-color: rgba(2, 33, 207, 0.1);
+.admin-menu a.active {
+  background-color: rgba(220, 38, 38, 0.1); /* merah transparan (Tailwind red-600) */
   --tw-text-opacity: 1;
-  color: rgb(139 92 246 / var(--tw-text-opacity));
+  color: rgb(220 38 38 / var(--tw-text-opacity)); /* merah solid */
 }
 .admin-menu a.active .material-symbols-rounded{
   font-variation-settings: 'FILL' 1;

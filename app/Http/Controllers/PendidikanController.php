@@ -13,7 +13,7 @@ class PendidikanController extends Controller
     public function index()
     {
         $riwayat_pendidikan = RiwayatPendidikan::with(['pegawai', 'strata'])->get();
-        return view('pendidikan', compact('riwayat_pendidikan'));
+        return view('frontend.pendidikan', compact('riwayat_pendidikan'));
     }
 
     /**
