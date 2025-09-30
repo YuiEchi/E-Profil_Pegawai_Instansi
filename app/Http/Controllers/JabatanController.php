@@ -12,7 +12,8 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        $riwayat_jabatan = RiwayatJabatan::with(['pegawai', 'eselon', 'jenis_jabatan'])->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_jabatan = RiwayatJabatan::with(['pegawai', 'eselon', 'jenis_jabatan'])->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.jabatan', compact('riwayat_jabatan'));
     }
 

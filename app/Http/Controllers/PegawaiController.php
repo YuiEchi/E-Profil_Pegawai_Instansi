@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Illuminate\Support\Facades\Auth;
+
 
 class PegawaiController extends Controller
 {
@@ -12,8 +14,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        // $pegawai = Pegawai::with(['instansi', 'instansi.unit_kerja', 'satuan_kerja'])->get();
-        $pegawai = Pegawai::with(['instansi.latestUnitKerja','instansi.latestUnitKerja.latestSatuanKerja'])->get();
+        $pegawai = Auth::user()->pegawai;
 
         return view('frontend.pegawai', compact('pegawai'));
     }

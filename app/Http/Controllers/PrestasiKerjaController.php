@@ -12,7 +12,8 @@ class PrestasiKerjaController extends Controller
      */
     public function index()
     {
-        $nilai_prestasi_kerja = NilaiPrestasiKerja::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $nilai_prestasi_kerja = NilaiPrestasiKerja::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.prestasi', compact('nilai_prestasi_kerja'));
     }
 

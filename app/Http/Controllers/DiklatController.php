@@ -12,7 +12,8 @@ class DiklatController extends Controller
      */
     public function index()
     {
-        $riwayat_diklat = RiwayatDiklat::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_diklat = RiwayatDiklat::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.diklat', compact('riwayat_diklat'));
     }
 

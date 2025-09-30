@@ -25,7 +25,7 @@
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->no_sk }}</td>
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($gaji->tanggal_sk)->format('d-m-Y') }}</td>
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">Rp {{ number_format($gaji->jml_gaji, 2, ',', '.') }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->ket }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->ket ?? '-' }}</td>
                             </tr>
                         @endforeach
                     </tbody>

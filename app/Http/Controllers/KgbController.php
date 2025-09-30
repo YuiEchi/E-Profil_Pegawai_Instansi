@@ -12,7 +12,8 @@ class KgbController extends Controller
      */
     public function index()
     {
-        $riwayat_kgb = RiwayatKgb::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_kgb = RiwayatKgb::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.kgb', compact('riwayat_kgb')); // ✅ ini benar
     }
 

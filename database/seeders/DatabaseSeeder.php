@@ -36,7 +36,8 @@ class DatabaseSeeder extends Seeder
         KesejahteraanSeeder::class,
         DataKeluargaSeeder::class,
         FolderSeeder::class,
-        DokumenSeeder::class
+        DokumenSeeder::class,
+        UserSeeder::class,
         ]);
     }
 }

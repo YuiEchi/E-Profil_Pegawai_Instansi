@@ -1,7 +1,7 @@
 @extends('main.layout')
 @section('content')
     <h1 class="text-xl">Profil Pegawai</h1>
-    @foreach($pegawai as $p)
+    @if($pegawai)
         <div class="p-1">
             <div class="overflow-x-auto ">
                 <table class="min-w-full divide-y divide-gray-200 border border-collapse">
@@ -11,7 +11,7 @@
                                 Nama
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->nama }}
+                                {{ $pegawai->nama }}
                             </td>
                         </tr>
                         <tr>
@@ -19,7 +19,7 @@
                                 NIP
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->nip }}
+                                {{ $pegawai->nip }}
                             </td>
                         </tr>
                         <tr>
@@ -27,7 +27,7 @@
                                 No Kartu Keluarga
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->no_kk }}
+                                {{ $pegawai->no_kk }}
                             </td>
                         </tr>
                         <tr>
@@ -35,7 +35,7 @@
                                 Tempat Lahir
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->tpt_lahir }}
+                                {{ $pegawai->tpt_lahir }}
                             </td>
                         </tr>
                         <tr>
@@ -43,7 +43,7 @@
                                 Tanggal Lahir
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->tgl_lahir }}
+                                {{ $pegawai->tgl_lahir }}
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +51,7 @@
                                 No Karpeg
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->no_karpeg }}
+                                {{ $pegawai->no_karpeg }}
                             </td>
                         </tr>
                         <tr>
@@ -59,7 +59,7 @@
                                 Agama
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->agama }}
+                                {{ $pegawai->agama }}
                             </td>
                         </tr>
                         <tr>
@@ -67,7 +67,7 @@
                                 Golongan Darah
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->golongan_darah }}
+                                {{ $pegawai->golongan_darah }}
                             </td>
                         </tr>
                         <tr>
@@ -75,7 +75,7 @@
                                 Status Perkawinan
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->status_kawin }}
+                                {{ $pegawai->status_kawin }}
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                                 Tanggal Perkawinan
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->tgl_kawin ?? '-' }}
+                                {{ $pegawai->tgl_kawin ?? '-' }}
                             </td>
                         </tr>
                         <tr>
@@ -91,7 +91,7 @@
                                 No Karis/Karsu
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->no_karis_karsu }}
+                                {{ $pegawai->no_karis_karsu }}
                             </td>
                         </tr>
                         <tr>
@@ -99,7 +99,7 @@
                                 Alamat Rumah
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->almt_rumah }}
+                                {{ $pegawai->almt_rumah }}
                             </td>
                         </tr>
                         <tr>
@@ -107,7 +107,7 @@
                                 Tamat Pensiun
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->tmt_pensiun }}
+                                {{ $pegawai->tmt_pensiun }}
                             </td>
                         </tr>
                         <tr>
@@ -115,7 +115,7 @@
                                 Instansi
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $p->instansi->nm_instansi }}
+                                {{ $pegawai->instansi->nm_instansi }}
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +123,7 @@
                                 Unit Kerja
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                 {{ optional($p->instansi->latestUnitKerja)->nm_unit_kerja ?? '-' }}
+                                 {{ optional($pegawai->instansi->latestUnitKerja)->nm_unit_kerja ?? '-' }}
                             </td>
                         </tr>
                         <tr>
@@ -131,12 +131,14 @@
                                 Satuan Kerja
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ optional(optional($p->instansi->latestUnitKerja)->latestSatuanKerja)->nm_satuan_kerja ?? '-' }}
+                                {{ optional(optional($pegawai->instansi->latestUnitKerja)->latestSatuanKerja)->nm_satuan_kerja ?? '-' }}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    @endforeach
+    @else
+        <p>Data pegawai belum ada untuk akun ini.</p>
+    @endif
 @endsection

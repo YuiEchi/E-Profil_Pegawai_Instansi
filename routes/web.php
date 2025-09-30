@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FBerandaController;
+use App\Http\Controllers\BBerandaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\JabatanController;
@@ -19,54 +21,49 @@ use App\Http\Controllers\KesejahteraanController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DokumenController;
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
-// TAMPILAN
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+// Redirect root ke halaman login
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+// Forgot Password
+Route::get('/forgot-password', function () {
+    return 'Fitur lupa password belum tersedia.';
+})->name('password.request');
 
-Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan');
+// ==== AUTH ====
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+// ==== FRONTEND (USER/PEGAWAI) ====
+Route::prefix('/')->name('frontend.')->middleware(['auth'])->group(function () {
+    Route::get('/beranda', [FBerandaController::class, 'index'])->name('beranda');
+    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan');
+    Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+    Route::get('/plh_plt', [PlhPltController::class, 'index'])->name('plh_plt');
+    Route::get('/golongan', [GolonganController::class, 'index'])->name('golongan');
+    Route::get('/diklat', [DiklatController::class, 'index'])->name('diklat');
+    Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
+    Route::get('/kgb', [KgbController::class, 'index'])->name('kgb');
+    Route::get('/penghargaan', [PenghargaanController::class, 'index'])->name('penghargaan');
+    Route::get('/slks', [SlksController::class, 'index'])->name('slks');
+    Route::get('/organisasi', [OrganisaasiController::class, 'index'])->name('organisasi');
+    Route::get('/prestasi', [PrestasiKerjaController::class, 'index'])->name('prestasi');
+    Route::get('/asesmen', [AsesmenController::class, 'index'])->name('asesmen');
+    Route::get('/kesejahteraan', [KesejahteraanController::class, 'index'])->name('kesejahteraan');
+    Route::get('/keluarga', [KeluargaController::class, 'index'])->name('keluarga');
+    Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+});
 
-Route::get('/plh_plt', [PlhPltController::class, 'index'])->name('plh_plt');
-
-Route::get('/golongan', [GolonganController::class, 'index'])->name('golongan');
-
-Route::get('/diklat', [DiklatController::class, 'index'])->name('diklat');
-
-Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
-
-Route::get('/kgb', [KgbController::class, 'index'])->name('kgb');
-
-Route::get('/penghargaan', [PenghargaanController::class, 'index'])->name('penghargaan');
-
-Route::get('/slks', [SlksController::class, 'index'])->name('slks');
-
-Route::get('/organisasi', [OrganisaasiController::class, 'index'])->name('organisasi');
-
-Route::get('/prestasi', [PrestasiKerjaController::class, 'index'])->name('prestasi');
-
-Route::get('/asesmen', [AsesmenController::class, 'index'])->name('asesmen');
-
-Route::get('/kesejahteraan', [KesejahteraanController::class, 'index'])->name('kesejahteraan');
-
-Route::get('/keluarga', [KeluargaController::class, 'index'])->name('keluarga');
-
-Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
-// AKHIR TAMPILAN
-
-
+// ==== BACKEND (ADMIN) ====
+Route::prefix('/admin')->name('backend.')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/beranda', [BBerandaController::class, 'index'])->name('beranda');
+});

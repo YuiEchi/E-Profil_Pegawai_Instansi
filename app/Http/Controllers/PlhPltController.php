@@ -12,7 +12,8 @@ class PlhPltController extends Controller
      */
     public function index()
     {
-        $riwayat_plh_plt = RiwayatPlhPlt::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_plh_plt = RiwayatPlhPlt::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.plh_plt', compact('riwayat_plh_plt'));
     }
 

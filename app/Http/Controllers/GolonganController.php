@@ -12,7 +12,8 @@ class GolonganController extends Controller
      */
     public function index()
     {
-        $riwayat_golongan = RiwayatGolongan::with('pegawai', 'golongan')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_golongan = RiwayatGolongan::with('pegawai', 'golongan')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.golongan', compact('riwayat_golongan'));
     }
 

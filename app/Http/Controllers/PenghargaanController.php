@@ -12,7 +12,8 @@ class PenghargaanController extends Controller
      */
     public function index()
     {
-        $riwayat_penghargaan = RiwayatPenghargaan::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_penghargaan = RiwayatPenghargaan::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.penghargaan', compact('riwayat_penghargaan'));
     }
 

@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RiwayatPendidikan;
+use Illuminate\Support\Collection;
 
-class PendidikanController extends Controller
+class BBerandaController extends Controller
 {
     /**
-     * Display a listing of the resourc.
+     * Display a listing of the resource.
      */
     public function index()
     {
-        $pegawaiId = auth()->user()->pegawai_id;
-        $riwayat_pendidikan = RiwayatPendidikan::with(['pegawai', 'strata'])->where('pegawai_id', $pegawaiId)->get();
-        return view('frontend.pendidikan', compact('riwayat_pendidikan'));
+        return view('backend.beranda');
     }
 
     /**

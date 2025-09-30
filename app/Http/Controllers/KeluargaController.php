@@ -12,10 +12,10 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        {
-        $data_keluarga = DataKeluarga::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $data_keluarga = DataKeluarga::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.keluarga', compact('data_keluarga'));
-        }
+        
     }
 
     /**

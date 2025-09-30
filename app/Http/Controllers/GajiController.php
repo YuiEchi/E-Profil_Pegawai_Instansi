@@ -12,7 +12,8 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $riwayat_gaji = RiwayatGaji::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_gaji = RiwayatGaji::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.gaji', compact('riwayat_gaji'));
     }
 

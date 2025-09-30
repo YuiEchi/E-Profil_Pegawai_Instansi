@@ -10,7 +10,8 @@ class DokumenController extends Controller
 {
     public function index()
     {
-        $dokumen = Dokumen::with(['folder','pegawai'])->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $dokumen = Dokumen::with(['folder','pegawai'])->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.dokumen', compact('dokumen'));
     }
 

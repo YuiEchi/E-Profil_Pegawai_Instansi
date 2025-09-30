@@ -12,10 +12,10 @@ class KesejahteraanController extends Controller
      */
     public function index()
     {
-        {
-        $kesejahteraan = Kesejahteraan::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $kesejahteraan = Kesejahteraan::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.kesejahteraan', compact('kesejahteraan'));
-        }
+        
     }
 
     /**

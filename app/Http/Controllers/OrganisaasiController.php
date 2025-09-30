@@ -12,7 +12,8 @@ class OrganisaasiController extends Controller
      */
     public function index()
     {
-        $riwayat_organisasi = RiwayatOrganisasi::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_organisasi = RiwayatOrganisasi::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.organisasi', compact('riwayat_organisasi'));
     }
 

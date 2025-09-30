@@ -8,11 +8,23 @@
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <h2 class="text-lg font-semibold text-gray-700 mb-4">Profil Anda</h2>
         <div class="flex items-center gap-6">
-            <img src="{{ asset('images/avatar-default.png') }}" alt="Foto Pegawai" class="w-20 h-20 rounded-full border">
+            <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Foto Pegawai" class="w-20 h-20 rounded-full border">
+            
+            @php
+                $pegawai = Auth::user()->pegawai;
+                $jabatanTerbaru = $pegawai?->riwayatJabatan?->sortByDesc('created_at')->first()?->jabatan;
+            @endphp
+
             <div>
-                <p class="text-gray-800 font-medium text-lg">{{ Auth::user()->name ?? 'Nama Pegawai' }}</p>
-                <p class="text-gray-600 text-sm">NIP: {{ Auth::user()->nip ?? '1234567890' }}</p>
-                <p class="text-gray-600 text-sm">Jabatan: {{ Auth::user()->jabatan ?? 'Staff' }}</p>
+                <p class="text-gray-800 font-medium text-lg">
+                    {{ $pegawai->nama ?? 'Nama Pegawai' }}
+                </p>
+                <p class="text-gray-600 text-sm">
+                    NIP: {{ $pegawai->nip ?? '1234567890' }}
+                </p>
+                <p class="text-gray-600 text-sm">
+                    Jabatan: {{ $jabatanTerbaru ?? 'Staff' }}
+                </p>
             </div>
         </div>
     </div>

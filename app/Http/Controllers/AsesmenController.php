@@ -12,7 +12,8 @@ class AsesmenController extends Controller
      */
     public function index()
     {
-        $riwayat_asesmen = RiwayatAsesmen::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_asesmen = RiwayatAsesmen::with('pegawai')->where('pegawai_id', $pegawaiId)->get();
         return view('frontend.asesmen', compact('riwayat_asesmen'));
     }
 

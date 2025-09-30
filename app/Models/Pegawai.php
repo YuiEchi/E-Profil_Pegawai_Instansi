@@ -10,6 +10,16 @@ class Pegawai extends Model
     use HasFactory;
     protected $table = 'pegawai';
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'pegawai_id');
+    }
+
+    public function riwayatSlks()
+    {
+        return $this->hasMany(RiwayatSlks::class);
+    }
+
     public function instansi()
     {
         return $this->belongsTo(Instansi::class);
@@ -36,6 +46,11 @@ class Pegawai extends Model
     public function satuan_kerja()
     {
         return $this->belongsTo(SatuanKerja::class, 'satuan_kerja_id');
+    }
+
+    public function riwayatJabatan()
+    {
+        return $this->hasMany(RiwayatJabatan::class);
     }
 
 }

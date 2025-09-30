@@ -14,7 +14,7 @@ class RiwayatSlksSeeder extends Seeder
     public function run(): void
     {
         $pegawaiId = DB::table('pegawai')->first()->id;
-        DB::table('riwayat_slk')->insert([
+        DB::table('riwayat_slks')->insert([
             'slks' => 'SLKS123456',
             'no_kepres' => 'KEPRES78910',
             'tgl_kepres' => '2023-05-01',

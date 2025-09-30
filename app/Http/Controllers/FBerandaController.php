@@ -22,18 +22,20 @@ use App\Models\RiwayatGaji;
  
 
 
-class BerandaController extends Controller
+class FBerandaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $pegawaiId = auth()->user()->pegawai_id;
+        // ambil data terbaru dari masing-masing tabel
         $updates = collect();
 
         // ambil data terbaru dari masing-masing tabel
         $updates = $updates->merge(
-            RiwayatPendidikan::latest()->take(5)->get()->map(function ($item) {
+            RiwayatPendidikan::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Pendidikan',
                     'created_at' => $item->created_at,
@@ -42,7 +44,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatJabatan::latest()->take(5)->get()->map(function ($item) {
+            RiwayatJabatan::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Jabatan',
                     'created_at' => $item->created_at,
@@ -51,7 +53,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatPlhPlt::latest()->take(5)->get()->map(function ($item) {
+            RiwayatPlhPlt::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat PLH/PLT',
                     'created_at' => $item->created_at,
@@ -60,7 +62,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            RiwayatGolongan::latest()->take(5)->get()->map(function ($item) {
+            RiwayatGolongan::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Golongan',
                     'created_at' => $item->created_at,
@@ -69,7 +71,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatDiklat::latest()->take(5)->get()->map(function ($item) {
+            RiwayatDiklat::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Diklat',
                     'created_at' => $item->created_at,
@@ -78,7 +80,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatGaji::latest()->take(5)->get()->map(function ($item) {
+            RiwayatGaji::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Gaji',
                     'created_at' => $item->created_at,
@@ -87,7 +89,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatKgb::latest()->take(5)->get()->map(function ($item) {
+            RiwayatKgb::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat KGB',
                     'created_at' => $item->created_at,
@@ -96,7 +98,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatPenghargaan::latest()->take(5)->get()->map(function ($item) {
+            RiwayatPenghargaan::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Penghargaan',
                     'created_at' => $item->created_at,
@@ -105,7 +107,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            RiwayatSlks::latest()->take(5)->get()->map(function ($item) {
+            RiwayatSlks::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat SLKS',
                     'created_at' => $item->created_at,
@@ -114,7 +116,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            RiwayatOrganisasi::latest()->take(5)->get()->map(function ($item) {
+            RiwayatOrganisasi::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Organisasi',
                     'created_at' => $item->created_at,
@@ -123,7 +125,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            NilaiPrestasiKerja::latest()->take(5)->get()->map(function ($item) {
+            NilaiPrestasiKerja::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Nilai Prestasi Kerja',
                     'created_at' => $item->created_at,
@@ -132,7 +134,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            RiwayatAsesmen::latest()->take(5)->get()->map(function ($item) {
+            RiwayatAsesmen::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Riwayat Asesmen',
                     'created_at' => $item->created_at,
@@ -141,7 +143,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            Kesejahteraan::latest()->take(5)->get()->map(function ($item) {
+            Kesejahteraan::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Kesejahteraan',
                     'created_at' => $item->created_at,
@@ -150,7 +152,7 @@ class BerandaController extends Controller
         );
         
         $updates = $updates->merge(
-            DataKeluarga::latest()->take(5)->get()->map(function ($item) {
+            DataKeluarga::where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Data Keluarga',
                     'created_at' => $item->created_at,
@@ -159,7 +161,7 @@ class BerandaController extends Controller
         );
 
         $updates = $updates->merge(
-            Dokumen::with('folder')->latest()->take(5)->get()->map(function ($item) {
+            Dokumen::with('folder')->where('pegawai_id', $pegawaiId)->latest()->take(5)->get()->map(function ($item) {
                 return [
                     'nama' => 'Dokumen',
                     'created_at' => $item->created_at,
@@ -171,21 +173,21 @@ class BerandaController extends Controller
         $latestUpdates = $updates->sortByDesc('created_at')->take(10);
 
         return view('frontend.beranda',[
-            'pendidikanCount' => RiwayatPendidikan::count(),
-            'jabatanCount' => RiwayatJabatan::count(),
-            'plhpltCount' => RiwayatPlhPlt::count(),
-            'golonganCount' => RiwayatGolongan::count(),
-            'diklatCount' => RiwayatDiklat::count(),
-            'gajiCount' => RiwayatGaji::count(),
-            'kgbCount' => RiwayatKgb::count(),
-            'penghargaanCount' => RiwayatPenghargaan::count(),
-            'slksCount' => RiwayatSlks::count(),
-            'organisasiCount' => RiwayatOrganisasi::count(),
-            'prestasiCount' => NilaiPrestasiKerja::count(),
-            'asesmenCount' => RiwayatAsesmen::count(),
-            'kesejahteraanCount' => Kesejahteraan::count(),
-            'keluargaCount' => DataKeluarga::count(),
-            'dokumenCount' => Dokumen::count()
+            'pendidikanCount' => RiwayatPendidikan::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'jabatanCount' => RiwayatJabatan::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'plhpltCount' => RiwayatPlhPlt::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'golonganCount' => RiwayatGolongan::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'diklatCount' => RiwayatDiklat::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'gajiCount' => RiwayatGaji::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'kgbCount' => RiwayatKgb::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'penghargaanCount' => RiwayatPenghargaan::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'slksCount' => RiwayatSlks::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'organisasiCount' => RiwayatOrganisasi::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'prestasiCount' => NilaiPrestasiKerja::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'asesmenCount' => RiwayatAsesmen::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'kesejahteraanCount' => Kesejahteraan::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'keluargaCount' => DataKeluarga::where('pegawai_id', auth()->user()->pegawai_id)->count(),
+            'dokumenCount' => Dokumen::where('pegawai_id', auth()->user()->pegawai_id)->count()
         ], compact('latestUpdates'));
     }
 

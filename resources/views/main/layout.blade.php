@@ -12,7 +12,7 @@
     <meta content="MyraStudio" name="author">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/logo_kp.png">
+    <link rel="shortcut icon" href="assets/images/logo_komdigi.png">
 
     <!-- Jsvectormap plugin css -->
     <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css">
@@ -39,8 +39,8 @@
         <aside id="app-menu"
             class="hs-overlay fixed inset-y-0 start-0 z-60 hidden w-sidenav min-w-sidenav -translate-x-full transform overflow-y-auto bg-body transition-all duration-300 hs-overlay-open:translate-x-0 lg:bottom-0 lg:end-auto lg:z-30 lg:block lg:translate-x-0 rtl:translate-x-full rtl:hs-overlay-open:translate-x-0 rtl:lg:translate-x-0 print:hidden [--body-scroll:true] [--overlay-backdrop:true] lg:[--overlay-backdrop:false]">
             <div class="sticky top-0 flex h-16 items-center justify-center px-6">
-                <a href="{{ route('pegawai') }}">
-                    <img src="assets/images/Simasneg.png" alt="logo" class="flex h-10">
+                <a href="{{ route('frontend.beranda') }}">
+                    <img src="assets/images/Simasneg2.png" alt="logo" class="flex h-10">
                 </a>
             </div>
           
@@ -48,7 +48,7 @@
                 <ul class="admin-menu hs-accordion-group flex w-full flex-col gap-1.5">
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('beranda') }}">
+                            href="{{ route('frontend.beranda') }}">
                             <i class="material-icons">dashboard</i>
                             Beranda
                         </a>
@@ -56,7 +56,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('pegawai') }}">
+                            href="{{ route('frontend.pegawai') }}">
                             <i class="material-icons">account_circle</i>
                             Profil Pegawai
                         </a>
@@ -64,7 +64,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('pendidikan') }}">
+                            href="{{ route('frontend.pendidikan') }}">
                             <span class="material-icons">school</span>
                             Riwayat Pendidikan
                         </a>
@@ -72,7 +72,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('jabatan') }}">
+                            href="{{ route('frontend.jabatan') }}">
                             <span class="material-icons">assignment_ind</span>
                             Riwayat Jabatan
                         </a>
@@ -80,7 +80,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('plh_plt') }}">
+                            href="{{ route('frontend.plh_plt') }}">
                             <span class="material-icons">assignment</span>
                             Riwayat PLH/PLT
                         </a>
@@ -88,7 +88,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('golongan') }}">
+                            href="{{ route('frontend.golongan') }}">
                             <span class="material-icons">workspaces</span>
                             Riwayat Golongan
                         </a>
@@ -96,7 +96,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('diklat') }}">
+                            href="{{ route('frontend.diklat') }}">
                             <span class="material-icons">sports_gymnastics</span>
                             Riwayat Diklat
                         </a>
@@ -104,7 +104,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('gaji') }}">
+                            href="{{ route('frontend.gaji') }}">
                             <span class="material-icons">paid</span>
                             Riwayat Gaji
                         </a>
@@ -112,7 +112,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('kgb') }}">
+                            href="{{ route('frontend.kgb') }}">
                             <span class="material-icons">trending_up</span>
                             Riwayat KGB
                         </a>
@@ -121,7 +121,7 @@
                     
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('penghargaan') }}">
+                            href="{{ route('frontend.penghargaan') }}">
                             <span class="material-icons">military_tech</span>
                             Riwayat Penghargaan
                         </a>
@@ -129,7 +129,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('slks') }}">
+                            href="{{ route('frontend.slks') }}">
                             <span class="material-icons">stars</span>
                             Riwayat SLKS
                         </a>
@@ -137,7 +137,7 @@
                     
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('organisasi') }}">
+                            href="{{ route('frontend.organisasi') }}">
                             <span class="material-icons">group</span>
                             Riwayat Organisasi
                         </a>
@@ -145,7 +145,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('prestasi') }}">
+                            href="{{ route('frontend.prestasi') }}">
                             <span class="material-icons">grading</span>
                             Nilai Prestasi Kerja
                         </a>
@@ -153,7 +153,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('asesmen') }}">
+                            href="{{ route('frontend.asesmen') }}">
                             <span class="material-icons">task</span>
                             Riwayat Asesmen
                         </a>
@@ -161,7 +161,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('kesejahteraan') }}">
+                            href="{{ route('frontend.kesejahteraan') }}">
                             <span class="material-icons">medical_services</span>
                             Riwayat Kesejahteraan
                         </a>
@@ -169,7 +169,7 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('keluarga') }}">
+                            href="{{ route('frontend.keluarga') }}">
                             <span class="material-icons">family_restroom</span>
                             Data keluarga
                         </a>
@@ -177,18 +177,21 @@
 
                     <li class="menu-item">
                         <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="{{ route('dokumen') }}">
+                            href="{{ route('frontend.dokumen') }}">
                             <span class="material-icons">description</span>
                             Dokumen
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
-                            href="#">
-                            <span class="material-icons">logout</span>
-                            Logout
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="w-full space-y-2 flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5">
+                                <span class="material-icons">logout</span>
+                                Logout
+                            </button>
+                        </form>
                     </li>
                     
                 </ul>

@@ -27,7 +27,7 @@
                                 <td class="border px-6 py-4 text-gray-800">{{ \Carbon\Carbon::parse($kgb->tgl_sk)->format('d-m-Y') }}</td>
                                 <td class="border px-6 py-4 text-gray-800">{{ \Carbon\Carbon::parse($kgb->tgl_tmt)->format('d-m-Y') }}</td>
                                 <td class="border px-6 py-4 text-gray-800">Rp {{ number_format($kgb->jml_gaji, 2, ',', '.') }}</td>
-                                <td class="border px-6 py-4 text-gray-800">{{ $kgb->ket }}</td>
+                                <td class="border px-6 py-4 text-gray-800">{{ $kgb->ket ?? '-' }}</td>
                             </tr>
                         @endforeach
                     </tbody>

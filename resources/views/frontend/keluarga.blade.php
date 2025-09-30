@@ -31,7 +31,7 @@
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->jenis_kelamin }}</td>
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->status_keluarga }}</td>
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->pendidikan }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->pekerjaan }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ empty($keluarga->pekerjaan) ? '-' :$keluarga->pekerjaan }}</td>
                                 <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ empty($keluarga->nip) ? '-' :$keluarga->nip }}</td>
                             </tr>
                         @endforeach

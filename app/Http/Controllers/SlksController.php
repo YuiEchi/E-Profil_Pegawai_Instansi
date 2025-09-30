@@ -12,7 +12,8 @@ class SlksController extends Controller
      */
     public function index()
     {
-        $riwayat_slks = RiwayatSlks::with('pegawai')->get();
+        $pegawaiId = auth()->user()->pegawai_id;
+        $riwayat_slks = RiwayatSlks::where('pegawai_id', $pegawaiId)->get();
         return view('frontend.slks', compact('riwayat_slks'));
     }
 
