@@ -20,6 +20,7 @@ use App\Http\Controllers\AsesmenController;
 use App\Http\Controllers\KesejahteraanController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\DaftarPegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +67,13 @@ Route::prefix('/')->name('frontend.')->middleware(['auth'])->group(function () {
 // ==== BACKEND (ADMIN) ====
 Route::prefix('/admin')->name('backend.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/beranda', [BBerandaController::class, 'index'])->name('beranda');
+
+    // ROUTE DAFTAR PEGAWAI
+    Route::get('/daftar-pegawai', [DaftarPegawaiController::class, 'index'])->name('daftar_pegawai');
+    Route::get('/admin/pegawai/{pegawai}', [PegawaiController::class, 'show'])->name('backend.pegawai.show');
+    Route::post('/daftar-pegawai/store', [DaftarPegawaiController::class, 'store'])->name('daftar_pegawai.store');
+    Route::delete('/daftar-pegawai/{id}', [DaftarPegawaiController::class, 'destroy'])->name('daftar_pegawai.destroy');
+    Route::resource('pegawai', PegawaiController::class);
+
+
 });

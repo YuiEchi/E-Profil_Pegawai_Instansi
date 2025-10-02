@@ -10,6 +10,26 @@ class Pegawai extends Model
     use HasFactory;
     protected $table = 'pegawai';
 
+    protected $fillable = [
+        'nama',
+        'nip',
+        'no_kk',
+        'tpt_lahir',
+        'tgl_lahir',
+        'no_karpeg',
+        'agama',
+        'golongan_darah',
+        'status_kawin',
+        'tgl_kawin',
+        'no_karis_karsu',
+        'almt_rumah',
+        'tmt_pensiun',
+        'instansi_id',
+        'unit_kerja_id',
+        'satuan_kerja_id',
+        'foto'
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'pegawai_id');
@@ -33,14 +53,7 @@ class Pegawai extends Model
        // relasi ke unit kerja lewat instansi
     public function unit_kerja()
     {
-        return $this->hasManyThrough(
-            UnitKerja::class,
-            Instansi::class,
-            'id',           // Foreign key di instansi
-            'instansi_id',  // Foreign key di unit_kerja
-            'instansi_id',  // Foreign key di pegawai
-            'id'            // Local key di instansi
-        );
+        return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
     }
 
     public function satuan_kerja()

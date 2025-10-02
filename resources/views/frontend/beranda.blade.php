@@ -8,12 +8,19 @@
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <h2 class="text-lg font-semibold text-gray-700 mb-4">Profil Anda</h2>
         <div class="flex items-center gap-6">
-            <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Foto Pegawai" class="w-20 h-20 rounded-full border">
-            
             @php
                 $pegawai = Auth::user()->pegawai;
                 $jabatanTerbaru = $pegawai?->riwayatJabatan?->sortByDesc('created_at')->first()?->jabatan;
             @endphp
+
+            @if($pegawai?->foto)
+                <img src="{{ file_exists(public_path('foto_pegawai/' . $pegawai->foto)) 
+                ? asset('foto_pegawai/' . $pegawai->foto) 
+                : asset('assets/images/users/default.png') }}" 
+                alt="Foto Pegawai"
+                class="w-24 h-24 object-cover rounded-full border border-gray-300 shadow-sm"
+                style="aspect-ratio: 1 / 1; max-width: 100px;">
+            @endif
 
             <div>
                 <p class="text-gray-800 font-medium text-lg">
@@ -154,34 +161,33 @@
     </div>
 
     <!-- Tabel Ringkas Dokumen -->
-    <div class="bg-white shadow rounded-xl p-6">
-        <h2 class="text-lg font-semibold text-gray-700 mb-4">Update Data Terbaru</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200 text-sm">
-                <thead class="bg-blue-600 text-white">
+    <h2 class="text-lg font-semibold text-gray-700 mb-4" style="margin-top: 50px">Update Data Terbaru</h2>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="border border-gray-200 px-6 py-3 text-sm text-default-100" style="width: 50px;">No</th>
+                    <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Nama</th>
+                    <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Tanggal Update</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @forelse ($latestUpdates as $index => $update)
                     <tr>
-                        <th class="border border-gray-200 px-6 py-3 text-sm text-default-100" style="width: 50px;">No</th>
-                        <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Nama</th>
-                        <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Tanggal Update</th>
+                        <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                        <td class="border px-6 py-4 text-sm text-gray-800">{{ $update['nama'] }}</td>
+                        <td class="border px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($update['created_at'])->format('d M Y H:i:s') }}</td>
                     </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                    @forelse ($latestUpdates as $index => $update)
-                        <tr>
-                            <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                            <td class="border px-6 py-4 text-sm text-gray-800">{{ $update['nama'] }}</td>
-                            <td class="border px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($update['created_at'])->format('d M Y H:i:s') }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="px-4 py-3 text-center text-gray-500">
-                                Belum ada aktivitas terbaru
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                @empty
+                    <tr>
+                        <td colspan="4" class="px-4 py-3 text-center text-gray-500">
+                            Belum ada aktivitas terbaru
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
+
 </div>
 @endsection
