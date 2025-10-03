@@ -42,26 +42,31 @@ class DaftarPegawaiController extends Controller
     $validated = $request->validate([
         'nama' => 'required|string|max:255',
         'nip' => 'required|string|max:50|unique:pegawai,nip',
-        'no_kk' => 'nullable|string|max:50',
-        'tpt_lahir' => 'nullable|string|max:100',
-        'tgl_lahir' => 'nullable|date',
-        'no_karpeg' => 'nullable|string|max:50',
-        'agama' => 'nullable|string|max:50',
-        'golongan_darah' => 'nullable|string|max:5',
-        'status_kawin' => 'nullable|string|max:50',
-        'tgl_kawin' => 'nullable|date',
-        'no_karis_karsu' => 'nullable|string|max:50',
-        'almt_rumah' => 'nullable|string|max:255',
-        'tmt_pensiun' => 'nullable|date',
-        'instansi_id' => 'nullable|exists:instansi,id',
-        'unit_kerja_id' => 'nullable|exists:unit_kerja,id',
-        'satuan_kerja_id' => 'nullable|exists:satuan_kerja,id',
+        'no_kk' => 'required|string|max:50',
+        'tpt_lahir' => 'required|string|max:100',
+        'tgl_lahir' => 'required|date',
+        'no_karpeg' => 'required|string|max:50|unique:pegawai,no_karpeg',
+        'agama' => 'required|string|max:50',
+        'golongan_darah' => 'nullable|string|not_in:-,?,null|max:2',
+        'status_kawin' => 'required|string|max:50',
+        'tgl_kawin' => 'required_if:status_kawin,kawin|date',
+        'no_karis_karsu' => 'required|string|max:50|unique:pegawai,no_karis_karsu',
+        'almt_rumah' => 'required|string|max:255',
+        'tmt_pensiun' => 'required|date',
+        'instansi_id' => 'required|exists:instansi,id',
+        'unit_kerja_id' => 'required|exists:unit_kerja,id',
+        'satuan_kerja_id' => 'required|exists:satuan_kerja,id',
         'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
 
     // === SIMPAN FOTO JIKA ADA ===
     if ($request->hasFile('foto')) {
         $validated['foto'] = $request->file('foto')->store('foto_pegawai', 'public');
+    }
+
+    // === VALIDATE GOLONGAN DARAH ===
+    if ($validated['golongan_darah'] === '?' || $validated['golongan_darah'] === '-') {
+        $validated['golongan_darah'] = null;
     }
 
     // 🔍 Audit isi data sebelum simpan

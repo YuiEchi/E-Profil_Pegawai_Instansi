@@ -17,13 +17,22 @@ class UserSeeder extends Seeder
         // Cari pegawai pertama
         $pegawai = DB::table('pegawai')->first();
 
+        // Buat Super Admin
+        User::create([
+            'name' => 'Super Admin',
+            'username' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'), // ganti dengan password aman
+            'role' => 1,
+        ]);
+
         // Buat Pegawai (kalau ada data pegawai)
         if ($pegawai) {
             User::create([
-                'pegawai_id' => 6,
-                'name' => 'Lionel Messi',
-                'username' => 'Messi',
-                'email' => 'Messi@gmail.com',
+                'pegawai_id' => $pegawai->id,
+                'name' => 'Pegawai Contoh',
+                'username' => 'pegawai1',
+                'email' => 'pegawai1@example.com',
                 'password' => Hash::make('password'),
                 'role' => 6,
             ]);

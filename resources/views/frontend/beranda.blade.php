@@ -8,19 +8,21 @@
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <h2 class="text-lg font-semibold text-gray-700 mb-4">Profil Anda</h2>
         <div class="flex items-center gap-6">
-            @php
-                $pegawai = Auth::user()->pegawai;
-                $jabatanTerbaru = $pegawai?->riwayatJabatan?->sortByDesc('created_at')->first()?->jabatan;
-            @endphp
 
-            @if($pegawai?->foto)
-                <img src="{{ file_exists(public_path('foto_pegawai/' . $pegawai->foto)) 
-                ? asset('foto_pegawai/' . $pegawai->foto) 
-                : asset('assets/images/users/default.png') }}" 
-                alt="Foto Pegawai"
-                class="w-24 h-24 object-cover rounded-full border border-gray-300 shadow-sm"
-                style="aspect-ratio: 1 / 1; max-width: 100px;">
-            @endif
+        @php
+            $pegawai = Auth::user()->pegawai;
+            $jabatanTerbaru = $pegawai?->riwayatJabatan?->sortByDesc('created_at')->first()?->jabatan;
+
+            $fotoPath = 'foto_pegawai/' . ($pegawai->foto ?? '');
+            $fotoUrl = file_exists(public_path($fotoPath)) && $pegawai->foto
+                ? asset($fotoPath)
+                : asset('assets/images/users/default.png');
+        @endphp
+
+        <img src="{{ $fotoUrl }}"
+            alt="Foto Pegawai"
+            class="w-24 h-24 object-cover rounded-full border border-gray-300 shadow-sm"
+            style="aspect-ratio: 1 / 1; max-width: 100px;">
 
             <div>
                 <p class="text-gray-800 font-medium text-lg">

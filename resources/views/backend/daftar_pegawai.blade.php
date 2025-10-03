@@ -75,48 +75,61 @@
             </div>
 
             <div id="tambahScrollContainer" class="p-6 overflow-y-auto" style="max-height: 600px;">
-                <form id="tambahForm" method="POST" action="{{ route('backend.daftar_pegawai.store') }}" enctype="multipart/form-data" class="space-y-4">
+                <form id="tambahForm" method="POST" action="{{ route('backend.daftar_pegawai.store') }}" enctype="multipart/form-data" class="space-y-4" novalidate>
                     @csrf
 
                     <div class="mb-3" style="margin-top: -25px;">
                         <label for="tambah_foto" class="block text-sm font-medium text-gray-700">Foto Pegawai</label>
-                        <input type="file" name="foto" id="tambah_foto"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-green-50 file:text-green-700 file:rounded-md file:cursor-pointer">
+
+                        <div class= "w-full flex items-center border border-gray-300 rounded-md shadow-sm px-3 bg-white text-sm text-gray-900">
+                            <button type="button" id="custom-upload" class="text-green-700 rounded-md bg-green-50">Pilih File</button>
+                            <hr style="border: 1px solid #ccc; height: 40px; margin-right: 10px; margin-left: 10px;" >
+                            <span id="file-name">Tidak ada file yang dipilih</span>
+                        </div>
+                        <input type="file" name="foto" id="tambah_foto" class="hidden"/>
                     </div>
                     <div class="mb-3">
                         <label for="tambah_nama" class="block text-sm font-medium text-gray-700">Nama</label>
                         <input type="text" name="nama" id="tambah_nama" value="{{ old('nama') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="tambah_nip" class="block text-sm font-medium text-gray-700">NIP</label>
-                        <input type="text" name="nip" id="tambah_nip" value="{{ old('nip') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm">
+                    <div class="form-group mb-3">
+                        <label for="nip" class="block text-sm font-medium text-gray-700">NIP</label>
+                        <input type="text" required name="nip" id="nip" class="form-control mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm @error('nip') is-invalid @enderror" value="{{ old('nip') }}">
+                        @error('nip')
+                            <div class="text-red-600 text-sm mt-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tambah_no_kk" class="block text-sm font-medium text-gray-700">No Kartu Keluarga</label>
                         <input type="text" name="no_kk" id="tambah_no_kk" value="{{ old('no_kk') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
                     <div class="mb-3">
                         <label for="tambah_tpt_lahir" class="block text-sm font-medium text-gray-700">Tempat Lahir</label>
                         <input type="text" name="tpt_lahir" id="tambah_tpt_lahir" value="{{ old('tpt_lahir') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
                     <div class="mb-3">
                         <label for="tambah_tgl_lahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                        <input type="text" name="tgl_lahir" id="tambah_tgl_lahir" value="{{ old('tgl_lahir') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                        <input type="date" name="tgl_lahir" id="tambah_tgl_lahir" value="{{ old('tgl_lahir') }}"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="tambah_no_karpeg" class="block text-sm font-medium text-gray-700">No Karpeg</label>
-                        <input type="text" name="no_karpeg" id="tambah_no_karpeg" value="{{ old('no_karpeg') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                    <div class="form-group mb-3">
+                        <label for="no_karpeg" class="block text-sm font-medium text-gray-700">No. Karpeg</label>
+                        <input type="text" required name="no_karpeg" id="no_karpeg" class="form-control mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm @error('no_karpeg') is-invalid @enderror" value="{{ old('no_karpeg') }}">
+                        @error('no_karpeg')
+                            <div class="text-red-600 text-sm mt-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tambah_agama" class="block text-sm font-medium text-gray-700">Agama</label>
                         <input type="text" name="agama" id="tambah_agama" value="{{ old('agama') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
                     <div class="mb-3">
                         <label for="tambah_golongan_darah" class="block text-sm font-medium text-gray-700">Golongan Darah</label>
@@ -125,37 +138,49 @@
                     </div>
                     <div class="mb-3">
                         <label for="tambah_status_kawin" class="block text-sm font-medium text-gray-700">Status Perkawinan</label>
-                        <input type="text" name="status_kawin" id="tambah_status_kawin" value="{{ old('status_kawin') }}"
+                        <select name="status_kawin" id="tambah_status_kawin"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            <option value="">Pilih Status</option>
+                            <option value="Belum Kawin" {{ old('status_kawin') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                            <option value="Menikah" {{ old('status_kawin') == 'Menikah' ? 'selected' : '' }}>Kawin</option>
+                            <option value="Cerai" {{ old('status_kawin') == 'Cerai' ? 'selected' : '' }}>Cerai</option>
+                        </select>
+                    </div>
+
+                        <div class="mb-3">
+                        <label for="tambah_tgl_kawin" class="block text-sm font-medium text-gray-700">Tanggal Kawin</label>
+                        <input type="date" name="tgl_kawin" id="tambah_tgl_kawin"
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
                     </div>
-                    <div class="mb-3">
-                        <label for="tambah_tgl_kawin" class="block text-sm font-medium text-gray-700">Tanggal Perkawinan</label>
-                        <input type="text" name="tgl_kawin" id="tambah_tgl_kawin" value="{{ old('tgl_kawin') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
-                    </div>
-                    <div class="mb-3">
-                        <label for="tambah_no_karis_karsu" class="block text-sm font-medium text-gray-700">No Karis/Karsu</label>
-                        <input type="text" name="no_karis_karsu" id="tambah_no_karis_karsu" value="{{ old('no_karis_karsu') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                    <div class="form-group mb-3">
+                        <label for="no_karis_karsu" class="block text-sm font-medium text-gray-700">No. Karis/Karsu</label>
+                        <input type="text" required name="no_karis_karsu" id="no_karis_karsu" class="form-control mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm @error('no_karis_karsu') is-invalid @enderror" value="{{ old('no_karis_karsu') }}">
+                        @error('no_karis_karsu')
+                            <div class="text-red-600 text-sm mt-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tambah_almt_rumah" class="block text-sm font-medium text-gray-700">Alamat Rumah</label>
                         <input type="text" name="almt_rumah" id="tambah_almt_rumah" value="{{ old('almt_rumah') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
                     <div class="mb-3">
                         <label for="tambah_tmt_pensiun" class="block text-sm font-medium text-gray-700">Tamat Pensiun</label>
-                        <input type="text" name="tmt_pensiun" id="tambah_tmt_pensiun" value="{{ old('tmt_pensiun') }}"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                        <input type="date" name="tmt_pensiun" id="tambah_tmt_pensiun" value="{{ old('tmt_pensiun') }}"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="tambah_instansi" class="block text-sm font-medium text-gray-700">Instansi</label>
                         <select name="instansi_id" id="tambah_instansi"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Instansi</option>
                             @foreach($instansis as $instansi)
-                                <option value="{{ $instansi->id }}">{{ $instansi->nm_instansi }}</option>
+                                <option value="{{ $instansi->id }}" {{ old('instansi_id') == $instansi->id ? 'selected' : '' }}>
+                                    {{ $instansi->nm_instansi }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -163,10 +188,12 @@
                     <div class="mb-3">
                         <label for="tambah_unit_kerja" class="block text-sm font-medium text-gray-700">Unit Kerja</label>
                         <select name="unit_kerja_id" id="tambah_unit_kerja"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Unit Kerja</option>
                             @foreach($unitKerjas as $unitKerja)
-                                <option value="{{ $unitKerja->id }}">{{ $unitKerja->nm_unit_kerja }}</option>
+                                <option value="{{ $unitKerja->id }}" {{ old('unit_kerja_id') == $unitKerja->id ? 'selected' : '' }}>
+                                    {{ $unitKerja->nm_unit_kerja }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -174,10 +201,12 @@
                     <div class="mb-3">
                         <label for="tambah_satuan_kerja" class="block text-sm font-medium text-gray-700">Satuan Kerja</label>
                         <select name="satuan_kerja_id" id="tambah_satuan_kerja"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Satuan Kerja</option>
                             @foreach($satuanKerjas as $satuanKerja)
-                                <option value="{{ $satuanKerja->id }}">{{ $satuanKerja->nm_satuan_kerja }}</option>
+                                <option value="{{ $satuanKerja->id }}" {{ old('satuan_kerja_id') == $satuanKerja->id ? 'selected' : '' }}>
+                                    {{ $satuanKerja->nm_satuan_kerja }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -188,7 +217,7 @@
             <!-- Tombol Aksi / Action Buttons -->
             <div class="flex justify-end gap-2 p-6">
                 <button type="button" onclick="closeTambahModal()"
-                        class="px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+                        class="px-3 py-1.5 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm">
                     Batal
                 </button>
                 <button type="submit" form="tambahForm"
@@ -199,6 +228,21 @@
         </div>
     </div>
 
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Trigger buka modal secara otomatis
+                const modal = document.getElementById('tambahModal');
+                if (modal) {
+                    modal.classList.remove('hidden'); // Tailwind-style
+                    modal.classList.add('flex');      // atau 'block' sesuai modal kamu
+                }
+
+                // Jika pakai Alpine.js atau toggle JS lain, trigger sesuai framework
+            });
+        </script>
+    @endif
+
     <script>
         function openTambahModal() {
             document.getElementById('tambahModal')?.classList.remove('hidden');
@@ -207,5 +251,36 @@
         function closeTambahModal() {
             document.getElementById('tambahModal')?.classList.add('hidden');
         }
+    </script>
+    <script>
+        document.getElementById('custom-upload').addEventListener('click', function () {
+            document.getElementById('tambah_foto').click();
+        });
+
+        document.getElementById('tambah_foto').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name || 'Tidak ada file yang dipilih';
+            document.getElementById('file-name').textContent = fileName;
+        });
+        document.getElementById('tambahForm').addEventListener('submit', function(e) {
+        });
+    </script>
+    <script>
+        const statusKawin = document.getElementById('tambah_status_kawin');
+        const tglKawin = document.getElementById('tambah_tgl_kawin');
+
+        function toggleTanggalKawin() {
+            if (statusKawin.value === 'Belum Kawin' || statusKawin.value === 'Cerai' || statusKawin.value === '') {
+            tglKawin.disabled = true;
+            tglKawin.value = ''; // kosongkan jika dinonaktifkan
+            } else {
+            tglKawin.disabled = false;
+            }
+        }
+
+        // Jalankan saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', toggleTanggalKawin);
+
+        // Jalankan saat status kawin berubah
+        statusKawin.addEventListener('change', toggleTanggalKawin);
     </script>
 @endsection
