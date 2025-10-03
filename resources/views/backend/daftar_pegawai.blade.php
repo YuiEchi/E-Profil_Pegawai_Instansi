@@ -175,7 +175,7 @@
                     <div class="mb-3">
                         <label for="tambah_instansi" class="block text-sm font-medium text-gray-700">Instansi</label>
                         <select name="instansi_id" id="tambah_instansi"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm" required>
+                            class="form-select mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Instansi</option>
                             @foreach($instansis as $instansi)
                                 <option value="{{ $instansi->id }}" {{ old('instansi_id') == $instansi->id ? 'selected' : '' }}>
@@ -188,26 +188,16 @@
                     <div class="mb-3">
                         <label for="tambah_unit_kerja" class="block text-sm font-medium text-gray-700">Unit Kerja</label>
                         <select name="unit_kerja_id" id="tambah_unit_kerja"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
+                            class=" form-select mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Unit Kerja</option>
-                            @foreach($unitKerjas as $unitKerja)
-                                <option value="{{ $unitKerja->id }}" {{ old('unit_kerja_id') == $unitKerja->id ? 'selected' : '' }}>
-                                    {{ $unitKerja->nm_unit_kerja }}
-                                </option>
-                            @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="tambah_satuan_kerja" class="block text-sm font-medium text-gray-700">Satuan Kerja</label>
                         <select name="satuan_kerja_id" id="tambah_satuan_kerja"
-                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
+                            class="form-select mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm" required>
                             <option value="">Pilih Satuan Kerja</option>
-                            @foreach($satuanKerjas as $satuanKerja)
-                                <option value="{{ $satuanKerja->id }}" {{ old('satuan_kerja_id') == $satuanKerja->id ? 'selected' : '' }}>
-                                    {{ $satuanKerja->nm_satuan_kerja }}
-                                </option>
-                            @endforeach
                         </select>
                     </div>
 
@@ -261,9 +251,59 @@
             const fileName = e.target.files[0]?.name || 'Tidak ada file yang dipilih';
             document.getElementById('file-name').textContent = fileName;
         });
+
         document.getElementById('tambahForm').addEventListener('submit', function(e) {
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const instansiSelect = document.getElementById('tambah_instansi');
+            const unitKerjaSelect = document.getElementById('tambah_unit_kerja');
+            const satuanKerjaSelect = document.getElementById('tambah_satuan_kerja');
+
+            const oldUnitKerja = "{{ old('unit_kerja_id') }}";
+            const oldSatuanKerja = "{{ old('satuan_kerja_id') }}";
+
+            // Saat instansi dipilih
+            instansiSelect.addEventListener('change', function () {
+                const instansiId = this.value;
+                fetch(`/admin/get-unit-kerja/${instansiId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        unitKerjaSelect.innerHTML = '<option value="">Pilih Unit Kerja</option>';
+                        data.forEach(item => {
+                            const selected = item.id == oldUnitKerja ? 'selected' : '';
+                            unitKerjaSelect.innerHTML += `<option value="${item.id}" ${selected}>${item.nm_unit_kerja}</option>`;
+                        });
+
+                        satuanKerjaSelect.innerHTML = '<option value="">Pilih Satuan Kerja</option>';
+                    });
+            });
+
+            // Saat unit kerja dipilih
+            unitKerjaSelect.addEventListener('change', function () {
+                const unitKerjaId = this.value;
+                fetch(`/admin/get-satuan-kerja/${unitKerjaId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        satuanKerjaSelect.innerHTML = '<option value="">Pilih Satuan Kerja</option>';
+                        data.forEach(item => {
+                            const selected = item.id == oldSatuanKerja ? 'selected' : '';
+                            satuanKerjaSelect.innerHTML += `<option value="${item.id}" ${selected}>${item.nm_satuan_kerja}</option>`;
+                        });
+                    });
+            });
+
+            // Jika ada old instansi, trigger fetch unit kerja
+            const oldInstansi = "{{ old('instansi_id') }}";
+            if (oldInstansi) {
+                instansiSelect.value = oldInstansi;
+                instansiSelect.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+
     <script>
         const statusKawin = document.getElementById('tambah_status_kawin');
         const tglKawin = document.getElementById('tambah_tgl_kawin');

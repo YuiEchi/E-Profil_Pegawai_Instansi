@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DaftarPegawaiController extends Controller
 {
+    public function getUnitKerja($instansiId)
+    {
+        $unitKerjas = UnitKerja::where('instansi_id', $instansiId)->get();
+        return response()->json($unitKerjas);
+    }
+
+    public function getSatuanKerja($unitKerjaId)
+    {
+        $satuanKerjas = SatuanKerja::where('unit_kerja_id', $unitKerjaId)->get();
+        return response()->json($satuanKerjas);
+    }
     /**
      * Display a listing of the resource.
      */

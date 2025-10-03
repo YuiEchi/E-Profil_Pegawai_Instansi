@@ -73,6 +73,8 @@ Route::prefix('/admin')->name('backend.')->middleware(['auth', 'is_admin'])->gro
     Route::get('/admin/pegawai/{pegawai}', [PegawaiController::class, 'show'])->name('backend.pegawai.show');
     Route::post('/daftar-pegawai/store', [DaftarPegawaiController::class, 'store'])->name('daftar_pegawai.store');
     Route::delete('/daftar-pegawai/{id}', [DaftarPegawaiController::class, 'destroy'])->name('daftar_pegawai.destroy');
+    Route::get('/get-unit-kerja/{instansi}', [DaftarPegawaiController::class, 'getUnitKerja']);
+    Route::get('/get-satuan-kerja/{unitKerja}', [DaftarPegawaiController::class, 'getSatuanKerja']);
     Route::resource('pegawai', PegawaiController::class);
 
 
