@@ -18,16 +18,22 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($riwayat_plh_plt as $rpp)
+                        @forelse($riwayat_plh_plt as $rpp)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->no_sprint }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_sprint }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_mulai }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_selesai ?? '-' }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->jabatan_plh_plt ?? '-' }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rpp->no_sprint }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rpp->tgl_sprint }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rpp->tgl_mulai }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rpp->tgl_selesai ?? '-' }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rpp->jabatan_plh_plt ?? '-' }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat PLH/PLT.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

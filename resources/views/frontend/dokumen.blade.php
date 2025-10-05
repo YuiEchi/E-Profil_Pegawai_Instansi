@@ -16,17 +16,23 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($dokumen as $dok)
+                        @forelse ($dokumen as $dok)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $dok->nm_dokumen }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $dok->folder->nm_folder ?? '-'}}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $dok->nm_dokumen }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $dok->folder->nm_folder ?? '-'}}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">
                                     <a href="{{ asset('storage/' . $dok->file_path) }}" target="_blank"
                                         class="text-blue-600 hover:underline">Lihat Dokumen</a>
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada Dokumen.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

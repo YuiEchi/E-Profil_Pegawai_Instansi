@@ -18,17 +18,23 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($nilai_prestasi_kerja as $nilai)
+                        @forelse ($nilai_prestasi_kerja as $nilai)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $nilai->tahun }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ number_format($nilai->skp, 2) }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ number_format($nilai->nilai_prestasi_kerja, 2) }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ number_format($nilai->nilai_perilaku_kerja, 2) }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $nilai->klasifikasi_nilai }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $nilai->pejabat_penilai }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $nilai->tahun }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ number_format($nilai->skp, 2) }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ number_format($nilai->nilai_prestasi_kerja, 2) }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ number_format($nilai->nilai_perilaku_kerja, 2) }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $nilai->klasifikasi_nilai }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $nilai->pejabat_penilai }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Nilai Prestasi Kerja.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

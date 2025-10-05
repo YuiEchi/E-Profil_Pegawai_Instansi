@@ -21,37 +21,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($riwayat_jabatan as $rj)
+                            @forelse ($riwayat_jabatan as $rj)
                                 <tr class="odd:bg-white even:bg-gray-100">
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->jabatan ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->eselon->nm_eselon ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->jenis_jabatan->jenis_jabatan ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->tmt ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->no_sk ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ \Carbon\Carbon::parse($rj->tgl_sk)->format('d-m-Y') ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->pejabat_penetap ?? '-' }}
                                     </td>
-                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                    <td class="border border-gray px-6 py-3 text-sm text-gray-800">
                                         {{ $rj->jenis_mutasi ?? '-' }}
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="9" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                        Belum ada data Riwayat Jabatan.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

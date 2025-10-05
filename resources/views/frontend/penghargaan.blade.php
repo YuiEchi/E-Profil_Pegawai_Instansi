@@ -18,19 +18,25 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($riwayat_penghargaan as $rph)
+                        @forelse ($riwayat_penghargaan as $rph)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rph->nm_penghargaan }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rph->no_urut }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rph->no_sertifikat }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($rph->tgl_sertifikat)->format('d-m-Y') }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rph->pejabat_penetap }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800 underline">
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rph->nm_penghargaan }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rph->no_urut }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rph->no_sertifikat }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ \Carbon\Carbon::parse($rph->tgl_sertifikat)->format('d-m-Y') }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $rph->pejabat_penetap }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800 underline">
                                     <a href="{{ $rph->link }}" target="_blank">Lihat Sertifikat</a>
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Penghargaan.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

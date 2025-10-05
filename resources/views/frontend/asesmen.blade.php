@@ -19,19 +19,25 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($riwayat_asesmen as $asesmen)
+                        @forelse ($riwayat_asesmen as $asesmen)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">
                                     {{ \Carbon\Carbon::parse($asesmen->tgl_asesmen)->format('d-m-Y') }}
                                 </td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $asesmen->tujuan_asesmen }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $asesmen->metode_asesmen }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $asesmen->gambaran_potensi }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $asesmen->gambaran_kompetensi }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $asesmen->saran_pengembangan }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $asesmen->tujuan_asesmen }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $asesmen->metode_asesmen }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $asesmen->gambaran_potensi }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $asesmen->gambaran_kompetensi }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $asesmen->saran_pengembangan }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Asesmen.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

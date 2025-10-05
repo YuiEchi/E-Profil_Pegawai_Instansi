@@ -18,16 +18,22 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($kesejahteraan as $data)
+                        @forelse ($kesejahteraan as $data)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $data->npwp }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $data->no_bpjs }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $data->no_taspen }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $data->kepemilikan_rumah }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $data->kartu_pegawai_elektronik }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $data->npwp }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $data->no_bpjs }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $data->no_taspen }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $data->kepemilikan_rumah }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $data->kartu_pegawai_elektronik }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Kesejahteraan.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

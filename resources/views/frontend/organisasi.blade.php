@@ -18,19 +18,25 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($riwayat_organisasi as $org)
+                        @forelse ($riwayat_organisasi as $org)
                             <tr>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->organisasi }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->jabatan }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $org->organisasi }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $org->jabatan }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">
                                     {{ $org->masa_jabatan }}
                                 </td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->no_sk }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($org->tgl_sk)->format('d-m-Y') }}</td>
-                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->pejabat_penetap }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $org->no_sk }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ \Carbon\Carbon::parse($org->tgl_sk)->format('d-m-Y') }}</td>
+                                <td class="border px-6 py-3 text-sm text-gray-800">{{ $org->pejabat_penetap }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Organisasi.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

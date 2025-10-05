@@ -18,16 +18,22 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($riwayat_gaji as $gaji)
+                        @forelse ($riwayat_gaji as $gaji)
                             <tr>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->pejabat_penetap }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->no_sk }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($gaji->tanggal_sk)->format('d-m-Y') }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">Rp {{ number_format($gaji->jml_gaji, 2, ',', '.') }}</td>
-                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->ket ?? '-' }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $gaji->pejabat_penetap }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $gaji->no_sk }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ \Carbon\Carbon::parse($gaji->tanggal_sk)->format('d-m-Y') }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">Rp {{ number_format($gaji->jml_gaji, 2, ',', '.') }}</td>
+                                <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $gaji->ket ?? '-' }}</td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
+                                    Belum ada data Riwayat Gaji.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
