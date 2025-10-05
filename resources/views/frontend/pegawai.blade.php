@@ -67,7 +67,7 @@
                                 Golongan Darah
                             </td>
                             <td class="border border-gray-200 px-6 py-4 whitespace-nowrap text-sm text-default-800">
-                                {{ $pegawai->golongan_darah }}
+                                {{ $pegawai->golongan_darah ?? '-'}}
                             </td>
                         </tr>
                         <tr>

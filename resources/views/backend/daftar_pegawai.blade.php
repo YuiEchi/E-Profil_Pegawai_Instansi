@@ -1,6 +1,4 @@
-@extends('main.layout2')
-
-@section('content')
+@extends('main.layout2')@section('content')
     <h1 class="text-xl font-semibold mb-4">Daftar Pegawai
         <button type="button"
         onclick="openTambahModal()"
@@ -75,7 +73,7 @@
             </div>
 
             <div id="tambahScrollContainer" class="p-6 overflow-y-auto" style="max-height: 600px;">
-                <form id="tambahForm" method="POST" action="{{ route('backend.daftar_pegawai.store') }}" enctype="multipart/form-data" class="space-y-4" novalidate>
+                <form id="tambahForm" method="POST" action="{{ route('backend.daftar_pegawai.store') }}" enctype="multipart/form-data" class="space-y-4">
                     @csrf
 
                     <div class="mb-3" style="margin-top: -25px;">
@@ -138,7 +136,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tambah_status_kawin" class="block text-sm font-medium text-gray-700">Status Perkawinan</label>
-                        <select name="status_kawin" id="tambah_status_kawin"
+                        <select name="status_kawin" id="tambah_status_kawin" required
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-sm">
                             <option value="">Pilih Status</option>
                             <option value="Belum Kawin" {{ old('status_kawin') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
@@ -300,6 +298,14 @@
             if (oldInstansi) {
                 instansiSelect.value = oldInstansi;
                 instansiSelect.dispatchEvent(new Event('change'));
+
+                // Tambahan: tunggu fetch unit kerja selesai, lalu trigger fetch satuan kerja
+                setTimeout(() => {
+                    if (oldUnitKerja) {
+                        unitKerjaSelect.value = oldUnitKerja;
+                        unitKerjaSelect.dispatchEvent(new Event('change'));
+                    }
+                }, 500); // delay kecil untuk pastikan unit kerja sudah terisi
             }
         });
     </script>
