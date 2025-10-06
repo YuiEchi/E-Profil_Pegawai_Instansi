@@ -1,6 +1,37 @@
 @extends('main.layout')
 @section('content')
     <h1 class="text-xl">Profil Pegawai</h1>
+    <!-- Profil Pegawai yang login -->
+    <div class="bg-white shadow rounded-xl p-6 mb-6">
+        <div class="flex items-center gap-6">
+        @php
+            $pegawai = Auth::user()->pegawai;
+            $jabatanTerbaru = $pegawai?->riwayatJabatan?->sortByDesc('created_at')->first()?->jabatan;
+
+            $fotoPath = 'foto_pegawai/' . ($pegawai->foto ?? '');
+            $fotoUrl = file_exists(public_path($fotoPath)) && $pegawai->foto
+                ? asset($fotoPath)
+                : asset('assets/images/users/default.png');
+        @endphp
+        <img src="{{ $fotoUrl }}"
+            alt="Foto Pegawai"
+            class="w-24 h-24 object-cover rounded-full border border-gray-300 shadow-sm"
+            style="aspect-ratio: 1 / 1; max-width: 100px;">
+
+            <div>
+                <p class="text-gray-800 font-medium text-lg">
+                    {{ $pegawai->nama ?? 'Nama Pegawai' }}
+                </p>
+                <p class="text-gray-600 text-sm">
+                    NIP: {{ $pegawai->nip ?? '1234567890' }}
+                </p>
+                <p class="text-gray-600 text-sm">
+                    Jabatan: {{ $jabatanTerbaru ?? 'Staff' }}
+                </p>
+            </div>
+        </div>
+    </div>
+    
     @if($pegawai)
         <div class="p-1">
             <div class="overflow-x-auto ">

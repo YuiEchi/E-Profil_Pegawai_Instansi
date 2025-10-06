@@ -70,7 +70,7 @@ class PegawaiController extends Controller
         $unitKerjas = UnitKerja::all();
         $satuanKerjas = SatuanKerja::all();
 
-        return view('backend.pegawai.show', compact('pegawai', 'instansis', 'unitKerjas', 'satuanKerjas'));
+        return view('backend.pegawai.profil', compact('pegawai', 'instansis', 'unitKerjas', 'satuanKerjas'));
 
     }
 
