@@ -22,6 +22,7 @@ class Instansi extends Model
     
     // Tentukan kolom mana yang boleh diisi (mass assignment)
     protected $fillable = [
+    'id',
     'nm_instansi',
     'kd_instansi',
     'kode',
@@ -37,12 +38,15 @@ class Instansi extends Model
 
         // Saat sebuah instance baru Instansi akan dibuat
         static::creating(function ($instansi) {
-            // Cari nilai urutan_instansi tertinggi yang ada
-            $maxOrder = static::max('urutan_instansi');
-            
-            // Set urutan_instansi untuk data baru = Max + 1. 
-            // Jika maxOrder null (tabel kosong), akan menjadi 1.
-            $instansi->urutan_instansi = $maxOrder + 1;
+            // Hanya set urutan_instansi jika belum disediakan (null)
+            if (is_null($instansi->urutan_instansi)) {
+                // Cari nilai urutan_instansi tertinggi yang ada
+                $maxOrder = static::max('urutan_instansi');
+
+                // Set urutan_instansi untuk data baru = Max + 1.
+                // Jika maxOrder null (tabel kosong), akan menjadi 1.
+                $instansi->urutan_instansi = $maxOrder + 1;
+            }
         });
     }
 }

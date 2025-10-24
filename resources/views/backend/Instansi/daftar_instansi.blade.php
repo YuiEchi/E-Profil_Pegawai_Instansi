@@ -1,4 +1,6 @@
-@extends('main.layout2')@section('content')<h1 class="text-xl font-semibold mb-4">Instansi</h1>
+@extends('main.layout2')
+@section('content')
+<h1 class="text-xl font-semibold mb-4">Instansi</h1>
 
 {{-- PEMBERITAHUAN (FLASH MESSAGES) --}}
 @if(session('success'))
@@ -20,7 +22,7 @@
     {{-- Form Pencarian (Hanya Query String) --}}
     <form action="{{ route('backend.daftar_instansi') }}" method="GET" class="w-full max-w-[400px]">
         <div class="relative">
-            <input type="text" name="search" placeholder="Cari Kode atau Nama Instansi..." 
+            <input type="text" name="search" placeholder="Cari Kode atau Nama Instansi..."
                    value="{{ request('search') }}"
                    class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
             <button type="submit" class="absolute right-0 top-0 mt-2 mr-3 text-gray-400 hover:text-blue-600">
@@ -40,11 +42,6 @@
     </a>
 </div>
 
-{{-- PAGINATION LINKS --}}
-<div class="mb-4">
-    {{ $instansi->links() }}
-</div>
-
 {{-- TABEL DATA INSTANSI --}}
 <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
     <table class="min-w-full divide-y divide-gray-200">
@@ -58,20 +55,20 @@
                     ID
                 </th>
                 {{-- HEADER KODE INSTANSI --}}
-                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 100px;"> 
+                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 100px;">
                     KODE INSTANSI
                 </th>
                 {{-- HEADER KODE --}}
-                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 80px;"> 
+                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 80px;">
                     KODE
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 250px;">
                     NAMA INSTANSI
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 200px;"> 
+                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 200px;">
                     ALAMAT
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 140px;"> 
+                <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider" style="width: 140px;">
                     TELP / FAX
                 </th>
                 <th scope="col" class="px-6 py-3 text-center text-xs font-semibold text-white uppercase tracking-wider" style="width: 50px;">
@@ -88,42 +85,42 @@
                     <td class="px-6 py-4 text-sm text-center text-gray-900 font-medium">
                         {{ $instansi->firstItem() + $loop->index }}
                     </td>
-                    
+
                     {{-- DATA ID BARU --}}
                     <td class="px-6 py-4 text-sm text-center text-gray-900 font-medium">
                         {{ $item->id }}
                     </td>
-                    
+
                     {{-- DATA KODE INSTANSI --}}
                     <td class="px-6 py-4 text-sm text-gray-800 text-center">
-                        {{ $item->kd_instansi ?? '-' }} 
+                        {{ $item->kd_instansi ?? '-' }}
                     </td>
                     {{-- DATA KODE --}}
                     <td class="px-6 py-4 text-sm text-gray-800 text-center">
-                        {{ $item->kode ?? '-' }} 
+                        {{ $item->kode ?? '-' }}
                     </td>
-                    
+
                     {{-- DATA NAMA INSTANSI --}}
                     <td class="px-6 py-4 text-sm text-gray-800 whitespace-normal">
                         {{ $item->nm_instansi ?? 'N/A' }}
                     </td>
-                    
+
                     {{-- DATA ALAMAT (Logic sederhana) --}}
-                    <td class="px-6 py-4 text-sm text-gray-800 whitespace-normal"> 
+                    <td class="px-6 py-4 text-sm text-gray-800 whitespace-normal">
                         {{ $item->alamat_instansi ?? '-' }}
                     </td>
-                    
+
                     {{-- DATA TELP / FAX (Logic sederhana) --}}
                     <td class="px-6 py-4 text-sm text-gray-800 leading-tight whitespace-normal">
                         T: {{ $item->telp_instansi ?? '-' }}<br>
                         F: {{ $item->fax_instansi ?? '-' }}
                     </td>
-                    
+
                     {{-- DATA URUT --}}
                     <td class="px-6 py-4 text-sm text-center text-gray-800 font-medium">
                         {{ $item->urutan_instansi ?? '-' }}
                     </td>
-                    
+
                     {{-- DATA AKSI --}}
                     <td class="px-6 py-4 text-sm text-center space-x-2">
                         <a href="{{ route('backend.instansi.edit', $item->id) }}"
@@ -150,4 +147,11 @@
         @endforelse
     </tbody>
 </table>
-</div>{{-- PAGINATION LINKS --}}<div class="mt-4">{{ $instansi->links() }}</div>@endsection
+</div>
+
+{{-- PAGINATION LINKS --}}
+<div class="mt-4">
+    {{ $instansi->links() }}
+</div>
+
+@endsection

@@ -25,8 +25,7 @@ class InstansiController extends Controller
                   ->orWhere('kd_instansi', 'like', '%' . $search . '%');
         }
 
-        // PERBAIKAN FINAL: Mengurutkan berdasarkan ID secara ascending (plek ketiplek DB)
-        $instansi = $query->orderBy('id', 'asc') 
+        $instansi = $query->orderByRaw('urutan_instansi IS NULL, urutan_instansi ASC')
                           ->paginate(15)
                           ->withQueryString();
 
@@ -48,7 +47,7 @@ class InstansiController extends Controller
     {
         // Validasi
         $validator = Validator::make($request->all(), [
-            'id'              => 'required|integer|unique:instansi,id', // ID harus unik saat CREATE
+            'id'              => 'required|integer|unique:instansi,id',
             'nm_instansi'     => 'required|string|max:255',
             'kd_instansi'     => 'required|string|max:50', 
             'kode'            => 'required|string|max:20', 
@@ -94,9 +93,6 @@ class InstansiController extends Controller
         $validator = Validator::make($request->all(), [
             'id'              => 'required|integer', 
             'nm_instansi'     => 'required|string|max:255',
-            
-            // PERBAIKAN: Tambahkan UNIQUE, tetapi abaikan ID record yang sedang di-edit.
-            // Solusi untuk mengatasi 'Duplicate entry' di DB yang bandel.
             'kd_instansi'     => 'required|string|unique:instansi,kd_instansi,' . $id . '|max:50', 
             'kode'            => 'required|string|unique:instansi,kode,' . $id . '|max:20', 
             
@@ -110,7 +106,6 @@ class InstansiController extends Controller
             return Redirect::back()->withErrors($validator)->withInput(); 
         }
 
-        // Cek jika ID diubah (untuk keamanan)
         if ($request->input('id') != $instansi->id) {
              return Redirect::back()->withErrors(['id' => 'ID tidak boleh diubah.'])->withInput();
         }
