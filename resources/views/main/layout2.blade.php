@@ -29,6 +29,8 @@
     <!-- Ikon Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 
 </head>
 
@@ -44,47 +46,168 @@
                 </a>
             </div>
           
-            <div class="h-[calc(100%-64px)] p-4 lg:ps-8" data-simplebar>
-                @php
-                    // Ambil nama rute saat ini
-                    $currentRouteName = Route::currentRouteName();
-                    // Definisikan kelas aktif dan tidak aktif
-                    $activeClass = 'bg-default-900/10 text-default-900 font-semibold';
-                    $inactiveClass = 'text-default-700 hover:bg-default-900/5';
-                @endphp
-
+             <div class="h-[calc(100%-64px)] p-4 lg:ps-8" data-simplebar>
                 <ul class="admin-menu hs-accordion-group flex w-full flex-col gap-1.5">
-                    <!-- Menu Beranda -->
                     <li class="menu-item">
-                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium transition-all 
-                            {{ str_contains($currentRouteName, 'beranda') ? $activeClass : $inactiveClass }}"
+                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
                             href="{{ route('backend.beranda') }}">
                             <i class="material-icons">dashboard</i>
                             Beranda
                         </a>
                     </li>
                     
-                    <!-- Menu Daftar Pegawai -->
-                    <li class="menu-item">
-                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium transition-all 
-                            {{ str_contains($currentRouteName, 'pegawai') || str_contains($currentRouteName, 'daftar_pegawai') ? $activeClass : $inactiveClass }}"
-                            href="{{ route('backend.daftar_pegawai') }}">
+                    <li class="menu-item hs-accordion  {{ request()->routeIs('backend.pegawai.show') || request()->routeIs('backend.pendidikan.show') || request()->routeIs('backend.jabatan.show') || request()->routeIs('backend.plh_plt.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.diklat.show') || request()->routeIs('backend.gaji.show') ||request()->routeIs('backend.kgb.show') || request()->routeIs('backend.penghargaan.show') || request()->routeIs('backend.slks.show') || request()->routeIs('backend.organisasi.show') || request()->routeIs('backend.prestasiKerja.show') || request()->routeIs('backend.asesmen.show') || request()->routeIs('backend.kesejahteraan.show') || request()->routeIs('backend.keluarga.show') || request()->routeIs('backend.dokumen.show')  ? 'hs-accordion-active' : '' }}">
+                        <a class=" hgroup flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
+                            href="{{ route('backend.daftar_pegawai') }}"
+                        class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all 
+                                {{ request()->routeIs('backend.pegawai.show') || request()->routeIs('backend.pendidikan.show') || request()->routeIs('backend.jabatan.show') || request()->routeIs('backend.plh_plt.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.diklat.show') || request()->routeIs('backend.gaji.show') ||request()->routeIs('backend.kgb.show') || request()->routeIs('backend.penghargaan.show') || request()->routeIs('backend.slks.show') || request()->routeIs('backend.organisasi.show') || request()->routeIs('backend.prestasiKerja.show') || request()->routeIs('backend.asesmen.show') || request()->routeIs('backend.kesejahteraan.show') || request()->routeIs('backend.keluarga.show') || request()->routeIs('backend.dokumen.show') ? 'bg-gray-100' : 'hover:bg-gray-100' }}">
                             <i class="material-icons">group</i>
-                            Daftar Pegawai
+                            <span class="menu-text">Daftar Pegawai</span>
                         </a>
+
+                        {{-- Dropdown: hanya muncul saat route detail aktif --}}
+                        <div class="hs-accordion-content {{ request()->routeIs('backend.pegawai.show') || request()->routeIs('backend.pendidikan.show') || request()->routeIs('backend.jabatan.show') || request()->routeIs('backend.plh_plt.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.golongan.show') || request()->routeIs('backend.diklat.show') || request()->routeIs('backend.gaji.show') ||request()->routeIs('backend.kgb.show') || request()->routeIs('backend.penghargaan.show') || request()->routeIs('backend.slks.show') || request()->routeIs('backend.organisasi.show') || request()->routeIs('backend.prestasiKerja.show') || request()->routeIs('backend.asesmen.show') || request()->routeIs('backend.kesejahteraan.show') || request()->routeIs('backend.keluarga.show') || request()->routeIs('backend.dokumen.show') ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300">
+                            <ul class="mt-2 space-y-2">
+                                <li class="menu-item">
+                                    <a href="{{ route('backend.pegawai.show', session('pegawai_id') ?? 1) }}"
+                                    class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5">
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Profil Pegawai
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.pendidikan.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Pendidikan
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.jabatan.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Jabatan
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.plh_plt.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat PLH/PLT
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.golongan.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Golongan
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.diklat.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Diklat
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.gaji.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Gaji
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.kgb.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat KGB
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.penghargaan.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Penghargaan
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.slks.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat SLKS
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.organisasi.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Organisasi
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.prestasiKerja.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Nilai Prestasi Kerja
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.asesmen.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Asesmen
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.kesejahteraan.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Riwayat Kesejahteraan
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.keluarga.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Data Keluarga
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-700 hover:bg-default-900/5"
+                                    href="{{ route('backend.dokumen.show', session('pegawai_id') ?? 1) }}"
+                                    >
+                                        <i class="i-tabler-circle-filled scale-25 text-lg opacity-75"></i>
+                                        Dokumen
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
                     </li>
 
-                    <!-- Menu Instansi  -->
                     <li class="menu-item">
-                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium transition-all 
-                            {{ str_contains($currentRouteName, 'instansi') || str_contains($currentRouteName, 'daftar_instansi') ? $activeClass : $inactiveClass }}"
-                            href="{{ route('backend.daftar_instansi') }}">
+                        <a class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5"
+                            href="#">
                             <i class="material-icons">domain</i>
-                            Instansi
+                            Daftar Instansi
                         </a>
                     </li>
 
-                    <!-- Menu Logout -->
                     <li class="menu-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -135,7 +258,7 @@
         <div class="page-content">
 
             <!-- Topbar Start -->
-            <header class="app-header md:hidden h-16 flex items-center lg:bg-opacity-10 bg-white  backdrop-blur-sm">
+            <header class="app-header md:hidden h-16 flex items-center lg:bg-opacity-10 bg-white  backdrop-blur-sm">
                 <div class="container flex items-center gap-4">
                     <!-- Topbar Brand Logo -->
                     <a href="index.html" class="md:hidden flex">
@@ -263,6 +386,9 @@
 
     <!-- Vector Map Js -->
     <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
+
+    <!-- Tambahkan di layout utama (biasanya di <head>) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     <!-- Dashboard Project Page js -->
     <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
