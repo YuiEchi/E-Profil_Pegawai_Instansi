@@ -5,6 +5,9 @@
 
 @section('content')
     <h1 class="text-xl">Riwayat Golongan</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -36,6 +39,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -52,7 +56,11 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+<<<<<<< HEAD
+                        @foreach($riwayat_golongan as $rg)
+=======
                         @forelse($riwayat_golongan as $rg)
+>>>>>>> upstream/Restu-ujicoba
                             @php
                                 $tgl_sk = Carbon::parse($rg->tgl_sk);
                                 $now = Carbon::now();
@@ -60,6 +68,17 @@
                                 $bulan = $tgl_sk->copy()->addYears($tahun)->diffInMonths($now);
                             @endphp
                             <tr>
+<<<<<<< HEAD
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rg->golongan->golru }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rg->tmt_golongan }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rg->no_sk }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rg->tgl_sk }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $tahun }} thn, {{ $bulan }} bln</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rg->pejabat }}</td>
+                            </tr>
+                        @endforeach
+=======
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $rg->golongan->golru }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $rg->tmt_golongan }}</td>
@@ -75,6 +94,7 @@
                                 </td>
                             </tr>
                         @endforelse
+>>>>>>> upstream/Restu-ujicoba
                     </tbody>
                 </table>
             </div>

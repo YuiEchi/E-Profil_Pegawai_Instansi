@@ -2,6 +2,9 @@
 
 @section('content')
     <h1 class="text-xl">Riwayat Gaji</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -33,6 +36,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -48,6 +52,18 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+<<<<<<< HEAD
+                        @foreach ($riwayat_gaji as $gaji)
+                            <tr>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->pejabat_penetap }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->no_sk }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($gaji->tanggal_sk)->format('d-m-Y') }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">Rp {{ number_format($gaji->jml_gaji, 2, ',', '.') }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $gaji->ket ?? '-' }}</td>
+                            </tr>
+                        @endforeach
+=======
                         @forelse ($riwayat_gaji as $gaji)
                             <tr>
                                 <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
@@ -64,6 +80,7 @@
                                 </td>
                             </tr>
                         @endforelse
+>>>>>>> upstream/Restu-ujicoba
                     </tbody>
                 </table>
             </div>

@@ -4,12 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+use App\Models\Instansi; // Pastikan Instansi di-import
+=======
+>>>>>>> upstream/Restu-ujicoba
 
 class Pegawai extends Model
 {
     use HasFactory;
     protected $table = 'pegawai';
 
+<<<<<<< HEAD
+    // Pastikan instansi_id sudah ditambahkan di migrasi tabel 'pegawai'
+    
+=======
     protected $fillable = [
         'nama',
         'nip',
@@ -30,6 +38,7 @@ class Pegawai extends Model
         'foto'
     ];
 
+>>>>>>> upstream/Restu-ujicoba
     public function user()
     {
         return $this->hasOne(User::class, 'pegawai_id');
@@ -40,6 +49,29 @@ class Pegawai extends Model
         return $this->hasMany(RiwayatSlks::class);
     }
 
+<<<<<<< HEAD
+    /**
+     * Relasi Many-to-One: Pegawai dimiliki oleh satu Instansi.
+     */
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class, 'instansi_id'); // Kunci asing sudah didefinisikan di migrasi
+    }
+    
+    // Relasi ke unit kerja (melalui Instansi, jika UnitKerja terkait ke Instansi)
+    public function unit_kerja()
+    {
+        // Asumsi: UnitKerja::class dan Instansi::class sudah di-import
+        // Relasi ini akan mencari UnitKerja melalui Instansi
+        return $this->hasManyThrough(
+            UnitKerja::class,
+            Instansi::class,
+            'id',             // Foreign key di Instansi (Instansi.id)
+            'instansi_id',    // Foreign key di UnitKerja (UnitKerja.instansi_id)
+            'instansi_id',    // Local key di Pegawai (Pegawai.instansi_id)
+            'id'              // Local key di Instansi (Instansi.id)
+        );
+=======
     public function instansi()
     {
         return $this->belongsTo(Instansi::class);
@@ -115,6 +147,7 @@ class Pegawai extends Model
     public function unit_kerja()
     {
         return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
+>>>>>>> upstream/Restu-ujicoba
     }
 
     public function satuan_kerja()
@@ -126,5 +159,8 @@ class Pegawai extends Model
     {
         return $this->hasMany(RiwayatJabatan::class);
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/Restu-ujicoba
 }

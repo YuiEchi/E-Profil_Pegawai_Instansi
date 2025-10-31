@@ -19,6 +19,10 @@ class UserSeeder extends Seeder
 
         // Buat Super Admin
         User::create([
+<<<<<<< HEAD
+            'name' => 'Super Admin',
+=======
+>>>>>>> upstream/Restu-ujicoba
             'username' => 'admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'), // ganti dengan password aman
@@ -29,6 +33,10 @@ class UserSeeder extends Seeder
         if ($pegawai) {
             User::create([
                 'pegawai_id' => $pegawai->id,
+<<<<<<< HEAD
+                'name' => 'Pegawai Contoh',
+=======
+>>>>>>> upstream/Restu-ujicoba
                 'username' => 'pegawai1',
                 'email' => 'pegawai1@example.com',
                 'password' => Hash::make('password'),

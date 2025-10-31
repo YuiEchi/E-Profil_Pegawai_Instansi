@@ -1,6 +1,9 @@
 @extends('main.layout')
 @section('content')
     <h1 class="text-xl">Data keluarga</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -32,6 +35,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -51,6 +55,23 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
+<<<<<<< HEAD
+                        @foreach ($data_keluarga as $keluarga)
+                            <tr>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->nama }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->nik }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->tmpt_lahir }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($keluarga->tgl_lahir)->format('d-m-Y') }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->jenis_kelamin }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->status_keluarga }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ $keluarga->pendidikan }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ empty($keluarga->pekerjaan) ? '-' :$keluarga->pekerjaan }}</td>
+                                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-800">{{ empty($keluarga->nip) ? '-' :$keluarga->nip }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+=======
                         @forelse ($data_keluarga as $keluarga)
                             <tr>
                                 <td class="border border-gray-200 px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
@@ -76,4 +97,5 @@
             </div>
         </div>
     </div>
+>>>>>>> upstream/Restu-ujicoba
 @endsection

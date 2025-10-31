@@ -2,6 +2,9 @@
 
 @section('content')
     <h1 class="text-xl">Riwayat PLH/PLT</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -33,6 +36,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -48,6 +52,18 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+<<<<<<< HEAD
+                        @foreach($riwayat_plh_plt as $rpp)
+                            <tr>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->no_sprint }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_sprint }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_mulai }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->tgl_selesai ?? '-' }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $rpp->jabatan_plh_plt ?? '-' }}</td>
+                            </tr>
+                        @endforeach
+=======
                         @forelse($riwayat_plh_plt as $rpp)
                             <tr>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
@@ -64,6 +80,7 @@
                                 </td>
                             </tr>
                         @endforelse
+>>>>>>> upstream/Restu-ujicoba
                     </tbody>
                 </table>
             </div>

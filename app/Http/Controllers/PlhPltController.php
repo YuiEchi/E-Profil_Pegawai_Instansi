@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatPlhPlt;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class PlhPltController extends Controller
 {
@@ -39,12 +42,16 @@ class PlhPltController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         session(['pegawai_id' => $id]);
 
         $pegawai = Pegawai::with('riwayatPlhPlt')->findOrFail($id);
         $riwayat_plh_plt = $pegawai->riwayatPlhPlt;
 
         return view('backend.pegawai.riwayat_plh_plt', compact('pegawai', 'riwayat_plh_plt'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

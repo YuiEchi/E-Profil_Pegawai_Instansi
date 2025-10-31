@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+use App\Models\Pegawai;
+use Illuminate\Support\Facades\Auth;
+=======
 use Illuminate\Validation\Rule;
 use App\Models\Pegawai;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Instansi;
 use App\Models\UnitKerja;
 use App\Models\SatuanKerja;
+>>>>>>> upstream/Restu-ujicoba
 
 
 class PegawaiController extends Controller
 {
+<<<<<<< HEAD
+=======
     public function getUnitKerja($instansi_id)
     {
         $unitKerja = UnitKerja::where('instansi_id', $instansi_id)->get(['id', 'nm_unit_kerja']);
@@ -24,12 +31,17 @@ class PegawaiController extends Controller
         $satuanKerja = SatuanKerja::where('unit_kerja_id', $unit_kerja_id)->get(['id', 'nm_satuan_kerja']);
         return response()->json($satuanKerja);
     }
+>>>>>>> upstream/Restu-ujicoba
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $pegawai = Auth::user()->pegawai;
+<<<<<<< HEAD
+
+        return view('frontend.pegawai', compact('pegawai'));
+=======
         return view('frontend.pegawai', compact('pegawai'));
 
         $pegawais = Pegawai::all(); // untuk daftar semua pegawai
@@ -38,6 +50,7 @@ class PegawaiController extends Controller
         $satuanKerjas = SatuanKerja::all();
         return view('backend.daftar_pegawai', compact('pegawais', 'instansis', 'unitKerjas', 'satuanKerjas'));
 
+>>>>>>> upstream/Restu-ujicoba
     }
 
 
@@ -61,6 +74,11 @@ class PegawaiController extends Controller
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
+    public function show(string $id)
+    {
+        //
+=======
     public function show($id)
     {
         session(['pegawai_id' => $id]);
@@ -72,6 +90,7 @@ class PegawaiController extends Controller
 
         return view('backend.pegawai.profil', compact('pegawai', 'instansis', 'unitKerjas', 'satuanKerjas'));
 
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**
@@ -85,6 +104,11 @@ class PegawaiController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
+    public function update(Request $request, string $id)
+    {
+        //
+=======
     public function update(Request $request, $id)
     {
         $pegawai = Pegawai::findOrFail($id);
@@ -142,6 +166,7 @@ class PegawaiController extends Controller
 
         return redirect()->route('backend.pegawai.show', ['pegawai' => $pegawai->id])->with('success', ' ✅ Data pegawai berhasil diperbarui.');
 
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

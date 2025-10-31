@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataKeluarga;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class KeluargaController extends Controller
 {
@@ -40,12 +43,16 @@ class KeluargaController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         session(['pegawai_id' => $id]);
 
         $pegawai = Pegawai::with('dataKeluarga')->findOrFail($id);
         $data_keluarga = $pegawai->dataKeluarga;
 
         return view('backend.pegawai.data_keluarga', compact('pegawai', 'data_keluarga'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

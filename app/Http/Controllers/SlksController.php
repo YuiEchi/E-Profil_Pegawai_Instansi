@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatSlks;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class SlksController extends Controller
 {
@@ -39,12 +42,16 @@ class SlksController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         session(['pegawai_id' => $id]);
 
         $pegawai = Pegawai::with('riwayatSlks')->findOrFail($id);
         $riwayat_slks = $pegawai->riwayatSlks;
 
         return view('backend.pegawai.riwayat_slks', compact('pegawai', 'riwayat_slks'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

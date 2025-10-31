@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokumen;
 use App\Models\Folder;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class DokumenController extends Controller
 {
@@ -44,6 +47,8 @@ class DokumenController extends Controller
 
         return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil disimpan!');
     }
+<<<<<<< HEAD
+=======
 
         public function show(string $id)
     {
@@ -54,4 +59,5 @@ class DokumenController extends Controller
 
         return view('backend.pegawai.dokumen', compact('pegawai', 'dokumen'));
     }
+>>>>>>> upstream/Restu-ujicoba
 }

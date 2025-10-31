@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatJabatan;
+<<<<<<< HEAD
+=======
 use App\Models\Eselon;
 use App\Models\JenisJabatan;
 use App\Models\Pegawai;
 
+>>>>>>> upstream/Restu-ujicoba
 
 class JabatanController extends Controller
 {
@@ -42,6 +45,9 @@ class JabatanController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         session(['pegawai_id' => $id]);
 
         $pegawai = Pegawai::findOrFail($id);
@@ -53,6 +59,7 @@ class JabatanController extends Controller
         $jenis_jabatan = JenisJabatan::all();
 
         return view('backend.pegawai.riwayat_jabatan', compact('pegawai', 'riwayat_jabatan', 'eselon', 'jenis_jabatan'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

@@ -1,6 +1,9 @@
 @extends('main.layout')
 @section('content')
     <h1 class="text-xl">Riwayat Jabatan</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -32,6 +35,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div>
         <div class="overflow-x-auto">
             <div class="min-w-full inline-block align-middle">
@@ -51,6 +55,39 @@
                             </tr>
                         </thead>
                         <tbody>
+<<<<<<< HEAD
+                            @foreach ($riwayat_jabatan as $rj)
+                                <tr class="odd:bg-white even:bg-gray-100">
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->jabatan ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->eselon->nm_eselon ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->jenis_jabatan->jenis_jabatan ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->tmt ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->no_sk ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ \Carbon\Carbon::parse($rj->tgl_sk)->format('d-m-Y') ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->pejabat_penetap ?? '-' }}
+                                    </td>
+                                    <td class="border border-gray px-6 py-4 text-sm text-gray-800">
+                                        {{ $rj->jenis_mutasi ?? '-' }}
+                                    </td>
+                                </tr>
+                            @endforeach
+=======
                             @forelse ($riwayat_jabatan as $rj)
                                 <tr class="odd:bg-white even:bg-gray-100">
                                     <td class="border border-gray px-6 py-3 text-sm text-gray-800">
@@ -88,6 +125,7 @@
                                     </td>
                                 </tr>
                             @endforelse
+>>>>>>> upstream/Restu-ujicoba
                         </tbody>
                     </table>
                 </div>

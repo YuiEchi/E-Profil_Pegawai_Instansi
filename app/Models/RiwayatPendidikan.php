@@ -19,6 +19,8 @@ class RiwayatPendidikan extends Model
     {
         return $this->belongsTo(Strata::class, 'strata_id');
     }
+<<<<<<< HEAD
+=======
 
     protected $fillable = [
         'pegawai_id',
@@ -30,4 +32,5 @@ class RiwayatPendidikan extends Model
         'pimpinan',
         'kode_pendidikan',
     ];
+>>>>>>> upstream/Restu-ujicoba
 }

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatKgb;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class KgbController extends Controller
 {
@@ -39,12 +42,16 @@ class KgbController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         session(['pegawai_id' => $id]);
 
         $pegawai = Pegawai::with('riwayatKgb')->findOrFail($id);
         $riwayat_kgb = $pegawai->riwayatKgb;
 
         return view('backend.pegawai.riwayat_kgb', compact('pegawai', 'riwayat_kgb'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

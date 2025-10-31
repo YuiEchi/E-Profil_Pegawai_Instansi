@@ -2,6 +2,9 @@
 
 @section('content')
     <h1 class="text-xl">Dokumen</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -33,6 +36,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -46,16 +50,28 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+<<<<<<< HEAD
+                        @foreach ($dokumen as $dok)
+                            <tr>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $dok->nm_dokumen }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $dok->folder->nm_folder ?? '-'}}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">
+=======
                         @forelse ($dokumen as $dok)
                             <tr>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $dok->nm_dokumen }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $dok->folder->nm_folder ?? '-'}}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">
+>>>>>>> upstream/Restu-ujicoba
                                     <a href="{{ asset('storage/' . $dok->file_path) }}" target="_blank"
                                         class="text-blue-600 hover:underline">Lihat Dokumen</a>
                                 </td>
                             </tr>
+<<<<<<< HEAD
+                        @endforeach
+=======
                             @empty
                             <tr>
                                 <td colspan="4" class="text-center border border-gray px-6 py-3 text-sm text-default-800">
@@ -63,6 +79,7 @@
                                 </td>
                             </tr>
                         @endforelse
+>>>>>>> upstream/Restu-ujicoba
                     </tbody>
                 </table>
             </div>

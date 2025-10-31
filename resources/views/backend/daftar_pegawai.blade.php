@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+@extends('main.layout2')
+
+@section('content')
+    <h1 class="text-xl font-semibold mb-4">Profil Pegawai</h1>
+=======
 @extends('main.layout2')@section('content')
     <h1 class="text-xl font-semibold mb-4">Daftar Pegawai
         <button type="button"
@@ -18,6 +24,7 @@
     <div class="mb-4">
         
     </div>
+>>>>>>> upstream/Restu-ujicoba
 
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
@@ -28,12 +35,32 @@
                             <th class="border border-gray-200 px-6 py-3 text-sm text-default-100" style="width: 50px;">No</th>
                             <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Nama Pegawai</th>
                             <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">NIP</th>
+<<<<<<< HEAD
+                            <th class="border border-gray-200 px-6 py-3 text-sm text-default-100">Aksi</th>
+=======
                             <th class="border border-gray-200 px-6 py-3 text-sm text-default-100" style="width: 250px;">Aksi</th>
+>>>>>>> upstream/Restu-ujicoba
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($pegawai as $item)
                             <tr>
+<<<<<<< HEAD
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $item->nama }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $item->nip }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800 space-x-2">
+                                    <a href="{{ route('backend.pegawai.edit', $item->id) }}"
+                                       class="inline-block px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('backend.pegawai.destroy', $item->id) }}" method="POST" class="inline-block"
+                                          onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">
+=======
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $item->nama }}</td>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $item->nip }}</td>
@@ -53,6 +80,7 @@
                                         <button type="submit"
                                             class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700">
                                             <span class="material-icons" style="margin-right: 3px; margin-left: -3px; font-size: 12px;">delete</span>
+>>>>>>> upstream/Restu-ujicoba
                                             Delete
                                         </button>
                                     </form>
@@ -64,6 +92,8 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
 
     <!-- Modal Tambah Pegawai dan Akun User -->
     <div id="tambahModal" class="fixed inset-0 z-50 hidden flex justify-center items-center bg-black/50">
@@ -352,4 +382,5 @@
         // Jalankan saat status kawin berubah
         statusKawin.addEventListener('change', toggleTanggalKawin);
     </script>
+>>>>>>> upstream/Restu-ujicoba
 @endsection

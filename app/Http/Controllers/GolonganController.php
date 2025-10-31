@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatGolongan;
+<<<<<<< HEAD
+=======
 use App\Models\Pegawai;
+>>>>>>> upstream/Restu-ujicoba
 
 class GolonganController extends Controller
 {
@@ -39,8 +42,12 @@ class GolonganController extends Controller
      */
     public function show(string $id)
     {
+<<<<<<< HEAD
+        //
+=======
         $pegawai = Pegawai::with('riwayatGolongan')->findOrFail($id);
         return view('backend.pegawai.riwayat_golongan', compact('pegawai'));
+>>>>>>> upstream/Restu-ujicoba
     }
 
     /**

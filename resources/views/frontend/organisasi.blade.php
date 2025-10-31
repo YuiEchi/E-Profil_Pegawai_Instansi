@@ -1,6 +1,9 @@
 @extends('main.layout')
 @section('content')
     <h1 class="text-xl">Riwayat Organisasi</h1>
+<<<<<<< HEAD
+
+=======
     <!-- Profil Pegawai yang login -->
     <div class="bg-white shadow rounded-xl p-6 mb-6">
         <div class="flex items-center gap-6">
@@ -32,6 +35,7 @@
         </div>
     </div>
     
+>>>>>>> upstream/Restu-ujicoba
     <div class="overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <div class="overflow-hidden">
@@ -48,6 +52,21 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+<<<<<<< HEAD
+                        @foreach ($riwayat_organisasi as $org)
+                            <tr>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->organisasi }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->jabatan }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">
+                                    {{ $org->masa_jabatan }}
+                                </td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->no_sk }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ \Carbon\Carbon::parse($org->tgl_sk)->format('d-m-Y') }}</td>
+                                <td class="border px-6 py-4 text-sm text-gray-800">{{ $org->pejabat_penetap }}</td>
+                            </tr>
+                        @endforeach
+=======
                         @forelse ($riwayat_organisasi as $org)
                             <tr>
                                 <td class="border px-6 py-3 text-sm text-gray-800">{{ $loop->iteration }}</td>
@@ -67,6 +86,7 @@
                                 </td>
                             </tr>
                         @endforelse
+>>>>>>> upstream/Restu-ujicoba
                     </tbody>
                 </table>
             </div>
