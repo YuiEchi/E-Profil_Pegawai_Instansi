@@ -14,24 +14,18 @@ use App\Http\Controllers\GajiController;
 use App\Http\Controllers\KgbController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\SlksController;
-use App\Http\Controllers\OrganisaasiController;
+use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\PrestasiKerjaController;
 use App\Http\Controllers\AsesmenController;
 use App\Http\Controllers\KesejahteraanController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DaftarPegawaiController;
-// use App\Http\Controllers\DaftarInstansiController; // Dihapus, karena fungsinya dipindahkan ke InstansiController
-use App\Http\Controllers\DaftarInstansiController;
-use App\Http\Controllers\InstansiController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Di sini tempat kamu mendaftarkan rute web untuk aplikasimu.
-|
 */
 
 // Redirect root ke halaman login
@@ -62,7 +56,7 @@ Route::prefix('/')->name('frontend.')->middleware(['auth'])->group(function () {
     Route::get('/kgb', [KgbController::class, 'index'])->name('kgb');
     Route::get('/penghargaan', [PenghargaanController::class, 'index'])->name('penghargaan');
     Route::get('/slks', [SlksController::class, 'index'])->name('slks');
-    Route::get('/organisasi', [OrganisaasiController::class, 'index'])->name('organisasi');
+    Route::get('/organisasi', [OrganisasiController::class, 'index'])->name('organisasi');
     Route::get('/prestasi', [PrestasiKerjaController::class, 'index'])->name('prestasi');
     Route::get('/asesmen', [AsesmenController::class, 'index'])->name('asesmen');
     Route::get('/kesejahteraan', [KesejahteraanController::class, 'index'])->name('kesejahteraan');
@@ -73,29 +67,65 @@ Route::prefix('/')->name('frontend.')->middleware(['auth'])->group(function () {
 // ==== BACKEND (ADMIN) ====
 Route::prefix('/admin')->name('backend.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/beranda', [BBerandaController::class, 'index'])->name('beranda');
+
+    // ROUTE DAFTAR PEGAWAI
     Route::get('/daftar-pegawai', [DaftarPegawaiController::class, 'index'])->name('daftar_pegawai');
-    
-    // PERUBAHAN KRUSIAL DI BAWAH INI:
+    Route::post('/daftar-pegawai/store', [DaftarPegawaiController::class, 'store'])->name('daftar_pegawai.store');
+    Route::delete('/daftar-pegawai/{id}', [DaftarPegawaiController::class, 'destroy'])->name('daftar_pegawai.destroy');
+    Route::get('/get-unit-kerja/{instansi}', [DaftarPegawaiController::class, 'getUnitKerja']);
+    Route::get('/get-satuan-kerja/{unitKerja}', [DaftarPegawaiController::class, 'getSatuanKerja']);
 
-    // 1. Rute untuk Daftar Instansi (Index) DIUBAH untuk menargetkan DaftarInstansiController@index.
-    // Ini menggunakan nama rute lama ('backend.daftar_instansi') agar tidak perlu mengubah semua Redirect.
-    Route::get('/daftar-instansi', [DaftarInstansiController::class, 'index'])->name('daftar_instansi');
-    
-    // 2. Rute Resource untuk Instansi DIUBAH agar TIDAK mengecualikan 'index'.
-    // Karena kita sudah punya rute 'daftar_instansi' di atas yang menuju InstansiController@index,
-    // kita cukup mengecualikan 'show' saja (sesuai logika di controller kamu).
-    Route::resource('instansi', InstansiController::class)->except(['show']); 
-    // CATATAN: Karena 'daftar_instansi' sudah mendaftarkan rute index,
-    // kita tetap bisa menggunakan resource di atas, asalkan kita mengubah 
-    // semua link 'backend.instansi.index' (jika ada) menjadi 'backend.daftar_instansi'.
-    // Agar lebih konsisten, kita biarkan saja resource Instansi tanpa index, dan hanya menggunakan
-    // rute GET di atas, dan memastikan semua link mengacu ke 'backend.daftar_instansi'.
-    // Route::resource('instansi', InstansiController::class)->except(['index', 'show']); // Kode asli kamu. Kita pakai ini saja.
-    // Biar lebih bersih, kita buat rute Resource Instansi yang hanya berisi CRUD (kecuali Index & Show)
-    // dan rute 'daftar-instansi' khusus untuk Index.
-    
-    Route::resource('instansi', InstansiController::class)->except(['index', 'show']); 
-
+    // ROUTE PROFIL PEGAWAI
+    Route::get('/admin/pegawai/{pegawai}', [PegawaiController::class, 'show'])->name('backend.pegawai.show');
+    Route::get('/admin/get-unit-kerja/{instansi_id}', [PegawaiController::class, 'getUnitKerja']);
+    Route::get('/admin/get-satuan-kerja/{unit_kerja_id}', [PegawaiController::class, 'getSatuanKerja']);
     Route::resource('pegawai', PegawaiController::class);
 
+    // ROUTE GOLONGAN
+    Route::get('/golongan/{pegawai}', [GolonganController::class, 'show'])->name('golongan.show');
+
+    // ROUTE PENDIDIKAN
+    Route::get('/riwayat_pendidikan/{pegawai}', [PendidikanController::class, 'show'])->name('pendidikan.show');
+    Route::post('/riwayat_pendidikan/store', [PendidikanController::class, 'store'])->name('backend.pendidikan.store');
+    Route::put('/admin/pendidikan/{id}', [PendidikanController::class, 'update'])->name('backend.pendidikan.update');
+    Route::delete('/riwayat_pendidikan/{id}', [PendidikanController::class, 'destroy'])->name('pendidikan.destroy');
+
+    // ROUTE JABATAN
+    Route::get('/riwayat_jabatan/{pegawai}', [JabatanController::class, 'show'])->name('jabatan.show');
+
+    // ROUTE PLH/PLT
+    Route::get('/riwayat_plh_plt/{pegawai}', [PlhPltController::class, 'show'])->name('plh_plt.show');
+
+    // ROUTE DIKLAT
+    Route::get('/riwayat_diklat/{pegawai}', [DiklatController::class, 'show'])->name('diklat.show');
+
+    // ROUTE GAJI
+    Route::get('/riwayat_gaji/{pegawai}', [GajiController::class, 'show'])->name('gaji.show');
+
+    // ROUTE KGB
+    Route::get('/riwayat_kgb/{pegawai}', [KgbController::class, 'show'])->name('kgb.show');
+    
+    // ROUTE PENGHARGAAN
+    Route::get('/riwayat_penghargaan/{pegawai}', [PenghargaanController::class, 'show'])->name('penghargaan.show');
+    
+    // ROUTE SLKS
+    Route::get('/riwayat_slks/{pegawai}', [SlksController::class, 'show'])->name('slks.show');
+
+    // ROUTE ORGANISASI
+    Route::get('/riwayat_organisasi/{pegawai}', [OrganisasiController::class, 'show'])->name('organisasi.show');
+
+    // ROUTE NILAI PRESTASI KERJA
+    Route::get('/nilai_prestasi_kerja/{pegawai}', [PrestasiKerjaController::class, 'show'])->name('prestasiKerja.show');
+
+    // ROUTE ASESMEN
+    Route::get('/riwayat_asesmen/{pegawai}', [AsesmenController::class, 'show'])->name('asesmen.show');
+
+    // ROUTE KESEJAHTERAAN
+    Route::get('/riwayat_kesejahteraan/{pegawai}', [KesejahteraanController::class, 'show'])->name('kesejahteraan.show');
+
+    // ROUTE KELUARGA
+    Route::get('/data_keluarga/{pegawai}', [KeluargaController::class, 'show'])->name('keluarga.show');
+
+    // ROUTE DOKUMEN
+    Route::get('/dokumen/{pegawai}', [DokumenController::class, 'show'])->name('dokumen.show');
 });

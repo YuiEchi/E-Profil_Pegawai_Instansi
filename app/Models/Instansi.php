@@ -4,49 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-/**
- * Model Instansi.
- * Digunakan untuk berinteraksi dengan tabel 'instansi' di database.
- */
 class Instansi extends Model
 {
     use HasFactory;
+    protected $table = 'instansi';
 
-    // KUNCI PERBAIKAN: Secara eksplisit menentukan nama tabel.
-    // Jika tidak ada ini, Laravel akan mencari tabel 'instansis'.
-    protected $table = 'instansi'; 
-
-    // Default-nya Laravel menggunakan primary key 'id', tidak perlu dideklarasikan.
-    // protected $primaryKey = 'id'; 
-    
-    // Tentukan kolom mana yang boleh diisi (mass assignment)
-    protected $fillable = [
-    'id',
-    'nm_instansi',
-    'kd_instansi',
-    'kode',
-    'alamat_instansi',
-    'telp_instansi',
-    'fax_instansi',
-    'urutan_instansi',
-    ];
-
-    protected static function boot()
-        {
-        parent::boot();
-
-        // Saat sebuah instance baru Instansi akan dibuat
-        static::creating(function ($instansi) {
-            // Hanya set urutan_instansi jika belum disediakan (null)
-            if (is_null($instansi->urutan_instansi)) {
-                // Cari nilai urutan_instansi tertinggi yang ada
-                $maxOrder = static::max('urutan_instansi');
-
-                // Set urutan_instansi untuk data baru = Max + 1.
-                // Jika maxOrder null (tabel kosong), akan menjadi 1.
-                $instansi->urutan_instansi = $maxOrder + 1;
-            }
-        });
+     // ambil 1 unit kerja paling baru (misal berdasarkan kolom 'created_at')
+    public function latestUnitKerja(): HasOne
+    {
+        return $this->hasOne(UnitKerja::class, 'instansi_id')
+                    ->latest('created_at'); // atau ganti dengan kolom tanggal yg tepat
     }
+    
 }
