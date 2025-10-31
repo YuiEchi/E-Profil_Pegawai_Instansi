@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('strata', function (Blueprint $table) {
             $table->id();
 
+<<<<<<< HEAD
             $table->string('strata');
+=======
+            $table->string('nama_strata');
+>>>>>>> upstream/Restu-ujicoba
             $table->string('jurusan');
 
             $table->timestamps();

@@ -9,4 +9,12 @@ class Strata extends Model
 {
     use HasFactory;
     protected $table = 'strata';
+<<<<<<< HEAD
+=======
+
+    protected $fillable = [
+        'nama_strata',
+        'jurusan',
+    ];
+>>>>>>> upstream/Restu-ujicoba
 }

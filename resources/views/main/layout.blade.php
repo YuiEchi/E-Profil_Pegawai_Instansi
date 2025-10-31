@@ -12,6 +12,7 @@
     <meta content="MyraStudio" name="author">
 
     <!-- App favicon -->
+<<<<<<< HEAD
     <link rel="shortcut icon" href="assets/images/logo_komdigi.png">
 
     <!-- Jsvectormap plugin css -->
@@ -22,12 +23,28 @@
 
     <!-- App css  (Mandatory in All Pages) -->
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css">
+=======
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo_komdigi.png') }}">
+
+    <!-- Jsvectormap plugin css -->
+    <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Icons css  (Mandatory in All Pages) -->
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- App css  (Mandatory in All Pages) -->
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
+>>>>>>> upstream/Restu-ujicoba
 
     <!-- Ikon Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Custom Css -->
+<<<<<<< HEAD
     <link href="css/style.css" rel="stylesheet" type="text/css">
+=======
+    <link href="{{ asset('css/style.css" rel="stylesheet') }}" type="text/css">
+>>>>>>> upstream/Restu-ujicoba
 
 
 </head>
@@ -346,6 +363,7 @@
     </div>
 
     <!-- Plugin Js (Mandatory in All Pages) -->
+<<<<<<< HEAD
     <script src="assets/libs/jquery/jquery.min.js"></script>
     <script src="assets/libs/preline/preline.js"></script>
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
@@ -364,6 +382,26 @@
 
     <!-- Dashboard Project Page js -->
     <script src="assets/js/pages/dashboard.js"></script>
+=======
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/preline/preline.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/iconify-icon/iconify-icon.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+
+    <!-- App Js (Mandatory in All Pages) -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    <!-- Apexcharts js -->
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+
+    <!-- Vector Map Js -->
+    <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
+
+    <!-- Dashboard Project Page js -->
+    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+>>>>>>> upstream/Restu-ujicoba
 
 </body>
 
