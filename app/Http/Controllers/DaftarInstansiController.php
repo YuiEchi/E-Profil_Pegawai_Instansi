@@ -18,9 +18,9 @@ class DaftarInstansiController extends Controller
         // Mengambil semua data Instansi dari database
         $instansi = Instansi::all();
 
-        // Mengirim data Instansi ke view 'backend.daftar_instansi'
-        // Variabel yang dikirimkan ke view adalah 'instansis'
-        return view('backend.daftar_instansi', compact('instansi'));
+        // Mengirim data Instansi ke view 'backend.instansi.daftar_instansi'
+        // Variabel yang dikirimkan ke view adalah 'instansi'
+        return view('backend.instansi.daftar_instansi', compact('instansi'));
     }
 
     // Anda dapat menambahkan method create, store, edit, update, dan destroy

@@ -22,7 +22,8 @@ use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DaftarPegawaiController;
 // use App\Http\Controllers\DaftarInstansiController; // Dihapus, karena fungsinya dipindahkan ke InstansiController
-use App\Http\Controllers\InstansiController; 
+use App\Http\Controllers\DaftarInstansiController;
+use App\Http\Controllers\InstansiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,9 +77,9 @@ Route::prefix('/admin')->name('backend.')->middleware(['auth', 'is_admin'])->gro
     
     // PERUBAHAN KRUSIAL DI BAWAH INI:
 
-    // 1. Rute untuk Daftar Instansi (Index) DIUBAH untuk menargetkan InstansiController@index.
+    // 1. Rute untuk Daftar Instansi (Index) DIUBAH untuk menargetkan DaftarInstansiController@index.
     // Ini menggunakan nama rute lama ('backend.daftar_instansi') agar tidak perlu mengubah semua Redirect.
-    Route::get('/daftar-instansi', [InstansiController::class, 'index'])->name('daftar_instansi'); 
+    Route::get('/daftar-instansi', [DaftarInstansiController::class, 'index'])->name('daftar_instansi');
     
     // 2. Rute Resource untuk Instansi DIUBAH agar TIDAK mengecualikan 'index'.
     // Karena kita sudah punya rute 'daftar_instansi' di atas yang menuju InstansiController@index,
